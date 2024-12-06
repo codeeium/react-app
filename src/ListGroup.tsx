@@ -1,20 +1,28 @@
-function ListGroup() {
-    let city = ['New York', 'San Francisco', 'Tokyo', 'London', 'Paris'];
-    let seasons = ['Winter', 'Spring', 'Summer', 'Autumn'];
-    let continents = ['Africa', 'Asia', 'Europe', 'North America', 'South America'];
+import {MouseEvent, useState} from "react";
 
-  const handclicked = (event: MouseEvent) => {
+interface ListProps {
+    items: string[];
+    heading: string;
+}
+
+function ListGroup({items, heading}: ListProps) {
+    let city = ['New York', 'San Francisco', 'Tokyo', 'London', 'Paris'];
+
+    const [selectedIndex, setSelectedIndex] = useState(-1)
+
+const handleClick = (event:MouseEvent) => {
     console.log(event);
-  }
+}
     return (
         <>
-            <h1>City Group</h1>
+            <h1>{heading}</h1>
             {city.length === 0 && <p>No items found</p>}
-            <ul className="list-group-horizontal-lg">
+            <ul className="list-group">
                 {city.map((city,index) => (
-                    <li className="list-group-item"
+                    <li className={selectedIndex === index ? 'list-group-item active' : 'list-group-item'}
                         key={city}
-                        onClick={() => console.log(city,index)}>{city}</li>
+                        onClick={() => setSelectedIndex(index)}
+                    >{city}</li>
                 ))}
             </ul>
         </>
