@@ -3,27 +3,18 @@ function ListGroup() {
     let seasons = ['Winter', 'Spring', 'Summer', 'Autumn'];
     let continents = ['Africa', 'Asia', 'Europe', 'North America', 'South America'];
 
+  const handclicked = (event: MouseEvent) => {
+    console.log(event);
+  }
     return (
         <>
             <h1>City Group</h1>
             {city.length === 0 && <p>No items found</p>}
             <ul className="list-group-horizontal-lg">
-                {city.map((city) => (
-                    <li className="sample" key={city}>{city}</li>
-                ))}
-            </ul>
-            <h1>Season Group</h1>
-            {seasons.length === 0 && <p>No items found</p>}
-            <ul className="list-group-item-dark">
-                {seasons.map((item) => (
-                    <li className="sample" key={item}>{item}</li>
-                ))}
-            </ul>
-            <h1>Continent Group</h1>
-            {continents.length === 0 && <p>No items found</p>}
-            <ul className="list-group-item-danger">
-                {continents.map((item) => (
-                    <li className="sample" key={item}>{item}</li>
+                {city.map((city,index) => (
+                    <li className="list-group-item"
+                        key={city}
+                        onClick={() => console.log(city,index)}>{city}</li>
                 ))}
             </ul>
         </>
