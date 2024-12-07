@@ -1,10 +1,10 @@
 import React from "react";
-import AuthApp from "./AuthApp";
+import DynamicListApp from "./DynamicListApp";
 
 const App: React.FC = () => {
     return (
         <div>
-            <AuthApp />
+            <DynamicListApp />
         </div>
     );
 };
