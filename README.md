@@ -1,2 +1,3 @@
 # New Repository
-git push --set-upstream origin main
+
+![img_1.png](img_1.png)
