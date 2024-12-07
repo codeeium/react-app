@@ -1,10 +1,10 @@
 import React from "react";
-import SearchFilterApp from "./SearchFilterApp";
+import AuthApp from "./AuthApp";
 
 const App: React.FC = () => {
     return (
         <div>
-            <SearchFilterApp />
+            <AuthApp />
         </div>
     );
 };
