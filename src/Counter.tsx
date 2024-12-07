@@ -33,7 +33,7 @@ const Counter: React.FC = () => {
 const buttonStyle: React.CSSProperties = {
     margin: "10px",
     padding: "10px 20px",
-    fontSize: "16px",
+    fontSize: "30px",
     cursor: "pointer",
 };
 
