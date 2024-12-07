@@ -1,3 +1,17 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+    margin: 100px;
+}
 
+h1 {
+    color: #333;
+}
 
-
+label {
+    font-size: 50px;
+    margin-top: 0px;
+}
