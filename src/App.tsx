@@ -1,10 +1,10 @@
 import React from "react";
-import PaginationApp from "./PaginationApp";
+import SearchFilterApp from "./SearchFilterApp";
 
 const App: React.FC = () => {
     return (
         <div>
-            <PaginationApp />
+            <SearchFilterApp />
         </div>
     );
 };
