@@ -1,10 +1,10 @@
 import React from "react";
-import DynamicListApp from "./DynamicListApp";
+import RealTimeUpdatesApp from "./RealTimeUpdatesApp";
 
 const App: React.FC = () => {
     return (
         <div>
-            <DynamicListApp />
+            <RealTimeUpdatesApp />
         </div>
     );
 };
