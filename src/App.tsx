@@ -1,10 +1,10 @@
 import React from "react";
-import FormHandling from "./FormHandling";
+import FetchAPIData from "./FetchAPIData";
 
 const App: React.FC = () => {
     return (
         <div>
-            <FormHandling />
+            <FetchAPIData />
         </div>
     );
 };
