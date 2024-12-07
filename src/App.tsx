@@ -1,10 +1,10 @@
 import React from "react";
-import FetchAPIData from "./FetchAPIData";
+import ShoppingCart from "./ShoppingCart";
 
 const App: React.FC = () => {
     return (
         <div>
-            <FetchAPIData />
+            <ShoppingCart />
         </div>
     );
 };
