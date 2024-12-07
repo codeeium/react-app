@@ -1,10 +1,13 @@
+import React from 'react';
+import Toggle from './Toggle';
 
-import ToggleComponent from "./useToggle/ToggleComponent";
-
-function App() {
+const App: React.FC = () => {
     return (
-       <ToggleComponent />
+        <div>
+            <h1>React Toggle Button with TypeScript</h1>
+            <Toggle />
+        </div>
     );
-}
+};
 
 export default App;
