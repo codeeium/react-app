@@ -1,10 +1,10 @@
 import React from "react";
-import ShoppingCart from "./ShoppingCart";
+import PaginationApp from "./PaginationApp";
 
 const App: React.FC = () => {
     return (
         <div>
-            <ShoppingCart />
+            <PaginationApp />
         </div>
     );
 };
