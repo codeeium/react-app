@@ -1,10 +1,10 @@
 import React from "react";
-import Counter from "./Counter";
+import FormHandling from "./FormHandling";
 
 const App: React.FC = () => {
     return (
         <div>
-            <Counter />
+            <FormHandling />
         </div>
     );
 };
