@@ -1,6 +1,6 @@
 // TodoList.tsx
 import React from "react";
-import TodoItem from "./TodoItem";
+import TodoItem2 from "./TodoItem2";
 import { Todo } from "../types";
 
 interface TodoListProps {
@@ -13,7 +13,7 @@ const TodoList: React.FC<TodoListProps> = ({ todos, toggleCompletion, removeTodo
     return (
         <ul className="list-group">
             {todos.map((todo) => (
-                <TodoItem
+                <TodoItem2
                     key={todo.id}
                     todo={todo}
                     toggleCompletion={toggleCompletion}
