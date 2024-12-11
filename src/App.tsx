@@ -1,22 +1,22 @@
 import React, { useState } from 'react';
-
-type User = {
-    name: string;
-    age: number;
-};
+import './styles.css'; // Import the CSS file
 
 const App: React.FC = () => {
-    const [user, setUser] = useState<User>({ name: 'John', age: 25 });
+    const [isUpdated, setIsUpdated] = useState<boolean>(false);
 
-    const updateUser = () => {
-        setUser({ ...user, name: 'Jane', age: 30 });
+    const toggleUser = () => {
+        setIsUpdated(!isUpdated); // Toggle the state
     };
 
     return (
-        <div>
-            <p>Name: {user.name}</p>
-            <p>Age: {user.age}</p>
-            <button onClick={updateUser}>Update User</button>
+        <div className="container">
+            <div className="output">
+                <div>Hello: {isUpdated ? 'Jane' : 'John'}</div>
+                <div>Age: {isUpdated ? 30 : 25}</div>
+            </div>
+            <button onClick={toggleUser} className="button">
+                {isUpdated ? 'Revert User' : 'Update User'}
+            </button>
         </div>
     );
 };
