@@ -1,27 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from "react";
 
-type Item<T> = {
-    id: number;
-    value: T;
-};
+const Counter: React.FC = () => {
+    const [count, setCount] = useState<number>(0);
 
-const App: React.FC = () => {
-    const [items, setItems] = useState<Item<string>[]>([]);
-
-    const addItem = () => {
-        setItems([...items, { id: items.length + 1, value: `Item ${items.length + 1}` }]);
-    };
+    const increment = useCallback(() => {
+        setCount((prevCount) => prevCount + 1);
+    }, []);
 
     return (
         <div>
-            <ul>
-                {items.map((item) => (
-                    <li key={item.id}>{item.value}</li>
-                ))}
-            </ul>
-            <button onClick={addItem}>Add Item</button>
+            <p>Count: {count}</p>
+            <button onClick={increment}>Increment</button>
         </div>
     );
 };
 
-export default App;
+export default Counter;
