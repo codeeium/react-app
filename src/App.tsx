@@ -1,20 +1,20 @@
 import React, { useState } from 'react';
 
 const App: React.FC = () => {
-    const [count, setCount] = useState<number>(0);
-    const [name, setName] = useState<string>('John');
-    const [isActive, setIsActive] = useState<boolean>(false);
+    const [items, setItems] = useState<string[]>([]);
+
+    const addItem = () => {
+        setItems([...items, `Item ${items.length + 1}`]);
+    };
 
     return (
         <div>
-            <p>Count: {count}</p>
-            <button onClick={() => setCount(count + 1)}>Increment</button>
-
-            <p>Name: {name}</p>
-            <button onClick={() => setName('Jane')}>Change Name</button>
-
-            <p>Active: {isActive ? 'Yes' : 'No'}</p>
-            <button onClick={() => setIsActive(!isActive)}>Toggle Active</button>
+            <ul>
+                {items.map((item, index) => (
+                    <li key={index}>{item}</li>
+                ))}
+            </ul>
+            <button onClick={addItem}>Add Item</button>
         </div>
     );
 };
