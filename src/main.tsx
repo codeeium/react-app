@@ -8,7 +8,7 @@ const rootElement = document.getElementById('root') as HTMLElement;
 if (rootElement) {
     ReactDOM.createRoot(rootElement).render(
         <React.StrictMode>
-            <App name='Jagan' age={21} gender='Male'/>
+            <App/>
         </React.StrictMode>
     );
 }
