@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 const App: React.FC = () => {
+
     const [count, setCount] = useState<number>(0);
     const [name, setName] = useState<string>('John');
     const [isActive, setIsActive] = useState<boolean>(false);
