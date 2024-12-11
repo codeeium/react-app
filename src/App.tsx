@@ -12,9 +12,12 @@ const App: React.FC = () => {
 
     const addTodo = () => {
         if (task.trim()) {
+
             setTodos([
                 ...todos,
-                { id: Date.now(), task: task.trim(), completed: false },
+                { id: Date.now(),
+                    task: task.trim(),
+                    completed: false },
             ]);
             setTask(""); // Clear the input field
         }
@@ -24,16 +27,19 @@ const App: React.FC = () => {
         setTodos([]);
     };
 
-    const toggleCompletion = (id: number) => {
+    const toggleCompletion =
+        (id: number) => {
         setTodos(
             todos.map((todo) =>
-                todo.id === id ? { ...todo, completed: !todo.completed } : todo
+                todo.id === id ?
+                    { ...todo, completed: !todo.completed } : todo
             )
         );
     };
 
     const removeTodo = (id: number) => {
-        setTodos(todos.filter((todo) => todo.id !== id));
+        setTodos(
+            todos.filter((todo) => todo.id !== id));
     };
 
     return (
