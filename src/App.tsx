@@ -1,20 +1,22 @@
 import React, { useState } from 'react';
 
-const App: React.FC = () => {
-    const [items, setItems] = useState<string[]>([]);
+type User = {
+    name: string;
+    age: number;
+};
 
-    const addItem = () => {
-        setItems([...items, `Item ${items.length + 1}`]);
+const App: React.FC = () => {
+    const [user, setUser] = useState<User>({ name: 'John', age: 25 });
+
+    const updateUser = () => {
+        setUser({ ...user, name: 'Jane', age: 30 });
     };
 
     return (
         <div>
-            <ul>
-                {items.map((item, index) => (
-                    <li key={index}>{item}</li>
-                ))}
-            </ul>
-            <button onClick={addItem}>Add Item</button>
+            <p>Name: {user.name}</p>
+            <p>Age: {user.age}</p>
+            <button onClick={updateUser}>Update User</button>
         </div>
     );
 };
