@@ -1,29 +1,13 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 
-const App: React.FC = () => {
+const App: React.FC = (props) => {
 
     return (
         <>
-            <tr>
-                <td>1</td>
-                <td>2</td>
-                <td>3</td>
-            </tr>
-            <tr>
-                <td>4</td>
-                <td>5</td>
-                <td>6</td>
-            </tr>
-            <tr>
-                <td>7</td>
-                <td>8</td>
-                <td>9</td>
-            </tr>
-            <tr>
-                <td>10</td>
-                <td>11</td>
-                <td>12</td>
-            </tr>
+            <h1>Name: {props.name}</h1>
+            <h2>Age: {props.age}</h2>
+            <h2>Gender: {props.gender}</h2>
+
         </>
     )
 };
