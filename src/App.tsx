@@ -1,22 +1,16 @@
 import React, { useState } from 'react';
 
-type User = {
-    name: string;
-    age: number;
-};
-
 const App: React.FC = () => {
-    const [user, setUser] = useState<User>({ name: 'John', age: 25 });
+    const [state, setState] = useState<string | number>('Hello');
 
-    const updateUser = () => {
-        setUser({ ...user, name: 'Jane', age: 30 });
+    const toggleState = () => {
+        setState((prev) => (typeof prev === 'string' ? 42 : 'Hello'));
     };
 
     return (
         <div>
-            <p>Name: {user.name}</p>
-            <p>Age: {user.age}</p>
-            <button onClick={updateUser}>Update User</button>
+            <p>State: {state}</p>
+            <button onClick={toggleState}>Toggle State</button>
         </div>
     );
 };
