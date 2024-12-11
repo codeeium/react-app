@@ -1,21 +1,25 @@
 import React, { useState } from 'react';
 
+type Item<T> = {
+    id: number;
+    value: T;
+};
+
 const App: React.FC = () => {
-    const [data, setData] = useState<string | null>(null);
+    const [items, setItems] = useState<Item<string>[]>([]);
 
-    const loadData = () => {
-        setData('Loaded Data');
-    };
-
-    const clearData = () => {
-        setData(null);
+    const addItem = () => {
+        setItems([...items, { id: items.length + 1, value: `Item ${items.length + 1}` }]);
     };
 
     return (
         <div>
-            <p>Data: {data ?? 'No Data Available'}</p>
-            <button onClick={loadData}>Load Data</button>
-            <button onClick={clearData}>Clear Data</button>
+            <ul>
+                {items.map((item) => (
+                    <li key={item.id}>{item.value}</li>
+                ))}
+            </ul>
+            <button onClick={addItem}>Add Item</button>
         </div>
     );
 };
