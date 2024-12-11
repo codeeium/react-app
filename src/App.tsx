@@ -1,16 +1,21 @@
 import React, { useState } from 'react';
 
 const App: React.FC = () => {
-    const [state, setState] = useState<string | number>('Hello');
+    const [data, setData] = useState<string | null>(null);
 
-    const toggleState = () => {
-        setState((prev) => (typeof prev === 'string' ? 42 : 'Hello'));
+    const loadData = () => {
+        setData('Loaded Data');
+    };
+
+    const clearData = () => {
+        setData(null);
     };
 
     return (
         <div>
-            <p>State: {state}</p>
-            <button onClick={toggleState}>Toggle State</button>
+            <p>Data: {data ?? 'No Data Available'}</p>
+            <button onClick={loadData}>Load Data</button>
+            <button onClick={clearData}>Clear Data</button>
         </div>
     );
 };
