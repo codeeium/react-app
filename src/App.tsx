@@ -1,34 +1,35 @@
-import React, { useState } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { useState } from 'react'
+import reactLogo from './assets/react.svg'
+import viteLogo from '/vite.svg'
+import './App.css'
 
-const App: React.FC = () => {
-    const [count, setCount] = useState(0);
+function App() {
+  const [count, setCount] = useState(0)
 
-    const Increment = () => {
-        setCount(prevVal => prevVal + 1);
-    };
+  return (
+    <>
+      <div>
+        <a href="https://vite.dev" target="_blank">
+          <img src={viteLogo} className="logo" alt="Vite logo" />
+        </a>
+        <a href="https://react.dev" target="_blank">
+          <img src={reactLogo} className="logo react" alt="React logo" />
+        </a>
+      </div>
+      <h1>Vite + React</h1>
+      <div className="card">
+        <button onClick={() => setCount((count) => count + 1)}>
+          count is {count}
+        </button>
+        <p>
+          Edit <code>src/App.tsx</code> and save to test HMR
+        </p>
+      </div>
+      <p className="read-the-docs">
+        Click on the Vite and React logos to learn more
+      </p>
+    </>
+  )
+}
 
-    const Decrement = () => {
-        setCount(prevVal => prevVal - 1);
-    };
-
-    const Reset = () => {
-        setCount(0);
-    };
-
-    return (
-        <div className="container text-center mt-5">
-            <h1>Incremental and Decremental</h1>
-            <div className="my-4">
-                <button className="btn btn-primary mx-2" onClick={Increment}>Increment</button>
-                <button className="btn btn-danger mx-2" onClick={Decrement}>Decrement</button>
-                <button className="btn btn-secondary mx-2" onClick={Reset}>Reset</button>
-            </div>
-            <div className="d-flex justify-content-center">
-                <h1 aria-label="count">{count}</h1>
-            </div>
-        </div>
-    );
-};
-
-export default App;
+export default App
