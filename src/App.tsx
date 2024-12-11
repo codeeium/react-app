@@ -14,6 +14,7 @@ const App: React.FC = () => {
                 <div>Hello: {isUpdated ? 'Jane' : 'John'}</div>
                 <div>Age: {isUpdated ? 30 : 25}</div>
             </div>
+            <h1>{isUpdated ? 'User Updated' : 'User Not Updated'}</h1>
             <button onClick={toggleUser} className="button">
                 {isUpdated ? 'Revert User' : 'Update User'}
             </button>
