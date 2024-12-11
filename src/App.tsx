@@ -1,23 +1,24 @@
-import React, { useState } from 'react';
+import React, {useState} from "react";
 
-const App: React.FC = () => {
+function app() {
+
     const [data, setData] = useState<string | null>(null);
 
-    const loadData = () => {
-        setData('Loaded Data');
-    };
+    const loaddata = () => {
+        setData('Dataloaded')
+    }
 
-    const clearData = () => {
-        setData(null);
-    };
+    const cleardata = () => {
+        setData(null)
+    }
 
     return (
-        <div>
-            <p>Data: {data ?? 'No Data Available'}</p>
-            <button onClick={loadData}>Load Data</button>
-            <button onClick={clearData}>Clear Data</button>
-        </div>
-    );
-};
+        <>
+            <p>{data ?? 'No data loaded' }</p>
+            <button onClick={loaddata}>LoadData</button>
+            <button onClick={cleardata}>ClearData</button>
+        </>
+    )
+}
 
-export default App;
+export default app
