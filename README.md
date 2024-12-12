@@ -4,16 +4,8 @@
 
 ![img_2.png](img_2.png)
 
-! Rajini Kammal 
-! Buy groceries
-! Do work
-! Play video games
-! Take a walk
-! Read books
-! Watch moviesw
-! Play games
 
-In the provided code, the data flow describes how state is managed and updated within the app as users interact with it, especially in relation to a to-do list. Here's a breakdown of the flow:
+
 
 ### Key Components and Functions:
 
