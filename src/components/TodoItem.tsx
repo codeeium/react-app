@@ -22,7 +22,7 @@ const TodoItem: React.FC<TodoItemProps> = ({ todo, toggleCompletion, removeTodo 
                 }}
                 onClick={() => toggleCompletion(todo.id)}
             >
-                {todo.task}
+                {todo.task} /* out displayed here in the list left side of delete button */
             </span>
             <button className="btn btn-danger btn-sm" onClick={() => removeTodo(todo.id)}>
                 Delete

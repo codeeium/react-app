@@ -31,8 +31,9 @@ const App: React.FC = () => {
         (id: number) => {
         setTodos(
             todos.map((todo) =>
-                todo.id === id ?
-                    { ...todo, completed: !todo.completed } : todo
+                todo.id === id
+                    ? { ...todo, completed: !todo.completed }
+                    : todo
             )
         );
     };
@@ -56,3 +57,15 @@ const App: React.FC = () => {
 };
 
 export default App;
+
+
+/*
+Condition: todo.id === id
+Checks if the current todo's id matches the id passed to the function.
+If True: { ...todo, completed: !todo.completed }
+Creates a new todo object using the spread operator (...todo), copying all properties from the original todo.
+The completed field is updated to the opposite of its current value (!todo.completed).
+If False: todo
+Returns the unchanged todo object.
+
+ */
