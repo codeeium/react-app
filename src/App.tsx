@@ -1,57 +1,42 @@
-// App.tsx
-import React, { useState } from "react";
-import Header from "./components/Header";
-import TodoInput from "./components/TodoInput";
-import TodoList from "./components/TodoList";
-import { Todo } from "./types";
-import "bootstrap/dist/css/bootstrap.min.css";
+import React, { useState } from 'react';
 
-const App: React.FC = () => {
-    const [todos, setTodos] = useState<Todo[]>([]);
-    const [task, setTask] = useState<string>("");
+function ShoppingCart() {
+    // Using multiple useState hooks
+    const [itemCount, setItemCount] = useState(0); // Number of items in the cart
+    const [totalPrice, setTotalPrice] = useState(0); // Total price of items
+    const [isLoggedIn, setIsLoggedIn] = useState(false); // User login state
 
-    const addTodo = () => {
-        if (task.trim()) {
+    // Handlers for actions
+    const addItem = () => {
+        setItemCount(itemCount + 1);
+        setTotalPrice(totalPrice + 10); // Assume each item costs $10
+    };
 
-            setTodos([
-                ...todos,
-                { id: Date.now(),
-                    task: task.trim(),
-                    completed: false },
-            ]);
-            setTask(""); // Clear the input field
+    const removeItem = () => {
+        if (itemCount > 0) {
+            setItemCount(itemCount - 1);
+            setTotalPrice(totalPrice - 10); // Reduce price by $10
         }
     };
 
-    const clearTodos = () => {
-        setTodos([]);
-    };
-
-    const toggleCompletion =
-        (id: number) => {
-        setTodos(
-            todos.map((todo) =>
-                todo.id === id ?
-                    { ...todo, completed: !todo.completed } : todo
-            )
-        );
-    };
-
-    const removeTodo = (id: number) => {
-        setTodos(
-            todos.filter((todo) => todo.id !== id));
+    const toggleLogin = () => {
+        setIsLoggedIn(!isLoggedIn);
     };
 
     return (
-        <div className="container mt-4">
-            <Header />
-            <TodoInput task={task} setTask={setTask} addTodo={addTodo} clearTodos={clearTodos} />
-            <TodoList todos={todos} toggleCompletion={toggleCompletion} removeTodo={removeTodo} />
-            <div className="text-center">
-                <strong>{todos.filter((todo) => !todo.completed).length}</strong> tasks left to do
-            </div>
+        <div>
+            <h1>Shopping Cart</h1>
+            <p>Items in Cart: {itemCount}</p>
+            <p>Total Price: ${totalPrice}</p>
+            <p>User is {isLoggedIn ? 'Logged In' : 'Logged Out'}</p>
+
+            <button onClick={addItem}>Add Item</button>
+            <button onClick={removeItem}>Remove Item</button>
+            <button onClick={toggleLogin}>
+                {isLoggedIn ? 'Log Out' : 'Log In'}
+            </button>
         </div>
     );
-};
+}
 
-export default App;
+export default ShoppingCart;
