@@ -1,79 +1,127 @@
-What Will You Learn 21 Days ?
 
-✅Day 1:  Introduction to React | Node
+Here’s how you can structure a TypeScript React project with file names for a context implementation. This structure helps keep things modular and organized.
 
-Installation | Setting up React environment
+File Structure
+css
+Copy code
+src/
+├── contexts/
+│   ├── ThemeContext.tsx
+├── hooks/
+│   ├── useTheme.ts
+├── components/
+│   ├── ThemeSwitcher.tsx
+├── App.tsx
+├── main.tsx
+Implementation in Files
+1. ThemeContext.tsx (in src/contexts/)
+   This file defines the context and the provider.
 
-✅Day 2 : Introduction to JSX| Components | Basic React component creation. | Styling
+typescript
+Copy code
+import React, { createContext, useState, ReactNode } from 'react';
 
-in React
+interface ThemeContextType {
+theme: string;
+setTheme: (theme: string) => void;
+}
 
-✅Day 3: Life Cycle Method | Learn about functional components.
+const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
-✅Day 4 : Learn Class Based Components
+interface ThemeProviderProps {
+children: ReactNode;
+}
 
-✅Day 5 : Props | Passing props to components.
+export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
+const [theme, setTheme] = useState<string>('light');
 
-✅Day 6 : Hooks
+return (
+<ThemeContext.Provider value={{ theme, setTheme }}>
+{children}
+</ThemeContext.Provider>
+);
+};
 
-– useState and useEffect
+export default ThemeContext;
+2. useTheme.ts (in src/hooks/)
+   This custom hook simplifies accessing the context.
 
-✅Day 7 : Intermediate
+typescript
+Copy code
+import { useContext } from 'react';
+import ThemeContext from '../contexts/ThemeContext';
 
-Hooks – useContext and useReducer
+export function useTheme() {
+const context = useContext(ThemeContext);
+if (!context) {
+throw new Error('useTheme must be used within a ThemeProvider');
+}
+return context;
+}
+3. ThemeSwitcher.tsx (in src/components/)
+   A component that uses the custom hook to toggle the theme.
 
-✅Day 8 :
+typescript
+Copy code
+import React from 'react';
+import { useTheme } from '../hooks/useTheme';
 
-Advanced Hooks – useRef, useMemo, useCallback
+const ThemeSwitcher: React.FC = () => {
+const { theme, setTheme } = useTheme();
 
-✅Day 9 : Introduction to React Router | Setting
+return (
+<div>
+<p>Current Theme: {theme}</p>
+<button onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}>
+Toggle Theme
+</button>
+</div>
+);
+};
 
-up React Router |Creating basic routes for different pages.
+export default ThemeSwitcher;
+4. App.tsx (in src/)
+   Wrap the application in the ThemeProvider.
 
-✅Day 10 : Component Communication
+typescript
+Copy code
+import React from 'react';
+import { ThemeProvider } from './contexts/ThemeContext';
+import ThemeSwitcher from './components/ThemeSwitcher';
 
-and Lists | Understanding
+const App: React.FC = () => {
+return (
+<ThemeProvider>
+<ThemeSwitcher />
+</ThemeProvider>
+);
+};
 
-the importance of keys in lists.
+export default App;
+5. main.tsx (in src/)
+   Render the application.
 
-✅Day 11: Introduction To Redux |Core Concept of
+typescript
+Copy code
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './App';
 
-Redux |Redux Data Flow
+const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
+root.render(
+<React.StrictMode>
+<App />
+</React.StrictMode>
+);
+Benefits of This File Structure
+Separation of Concerns:
 
-✅Day 12 : Middleware
+ThemeContext.tsx focuses on context creation and the provider.
+useTheme.ts encapsulates the logic for using the context.
+Components like ThemeSwitcher remain focused on UI and behavior.
+Reusability:
 
-& Async Operations with Redux Thunk
+The custom hook (useTheme) and context can be easily reused in other components.
+Scalability:
 
-✅Day 13 :
-
-Connecting Redux with React
-
-✅Day 14 :
-
-What is Material UI | Installation | Core ComponentsDay
-
-✅Day 15 : Form Validation  In React
-
-✅Day 16 E-Commerce Foundation: Setting Up Your Online
-
-Store
-
-✅Day 17 :
-
-Building the Product Listing Page
-
-✅Day 18 : Implementing
-
-Cart Functionality
-
-✅Day 19 : Crafting
-
-the Checkout Experience
-
-✅Day 20: Adding
-
-Style and UX Improvements
-
-✅Day 21 : Mastering
-
-Deployment Using GitHub
+Adding more contexts (e.g., UserContext, AuthContext) becomes straightforward by following a similar pattern.
