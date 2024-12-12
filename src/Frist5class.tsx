@@ -1,6 +1,4 @@
-import React from "react";
-
-const Fristclass = () => {
+const Frist5class = () => {
     return (
         <>
         </>
