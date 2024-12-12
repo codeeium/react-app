@@ -1,16 +1,12 @@
-import React, { useContext } from 'react';
-import { MyProvider, MyContext } from './Mycontext';
-
-const MyComponent: React.FC = () => {
-    const value = useContext(MyContext); // Access the context value
-    return <div>{value}</div>; // Display the context value
-};
+import React from 'react';
+import { ThemeProvider } from './contexts/ThemeContext';
+import ThemeSwitcher from './components/ThemeSwitcher';
 
 const App: React.FC = () => {
     return (
-        <MyProvider>
-            <MyComponent />
-        </MyProvider>
+        <ThemeProvider>
+            <ThemeSwitcher />
+        </ThemeProvider>
     );
 };
 
