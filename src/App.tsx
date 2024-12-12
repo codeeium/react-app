@@ -48,7 +48,8 @@ const App: React.FC = () => {
             <TodoInput task={task} setTask={setTask} addTodo={addTodo} clearTodos={clearTodos} />
             <TodoList todos={todos} toggleCompletion={toggleCompletion} removeTodo={removeTodo} />
             <div className="text-center">
-                <strong>{todos.filter((todo) => !todo.completed).length}</strong> tasks left to do
+                <strong>{todos.filter((todo) => !todo.completed).length}</strong>
+                tasks left to do
             </div>
         </div>
     );
