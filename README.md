@@ -1,5 +1,9 @@
 ![img_1.png](img_1.png)
 
+![img.png](img.png)
+
+![img_2.png](img_2.png)
+
 ! Rajini Kammal 
 ! Buy groceries
 ! Do work
@@ -216,91 +220,5 @@ todos = [];  // All todos are removed.
 
 This demonstrates how the state changes and how each action in the app (adding, completing, removing, clearing) updates the state, which then triggers re-rendering to update the UI.
 
-![img.png](img.png)
 
 
-![img_2.png](img_2.png)
-
-
-draw diagram same like the text - same format :                             +-------------------------+
-|    App Component        |
-|-------------------------|
-| State:                   |
-|  - todos []             |
-|  - task (string)        |
-|-------------------------|
-| Functions:              |
-|  - addTodo()            |
-|  - toggleCompletion()   |
-|  - removeTodo()         |
-|  - clearTodos()         |
-+-----------+-------------+
-|
-Passes props: todos, setTask, addTodo, clearTodos
-|
-+----------------------------+----------------------------+
-|                                                        |
-+------v-------+                                          +-----v--------+
-| TodoInput    |                                          | TodoList     |
-|--------------|                                          |--------------|
-| Props:       |                                          | Props:        |
-|  - task      |                                          |  - todos[]    |
-|  - setTask() |                                          |  - toggleCompletion() |
-|  - addTodo() |                                          |  - removeTodo()     |
-|  - clearTodos()                                       |  - TodoItem        |
-+------^-------+                                          +-------^--------+
-|                                                       |
-|                                                       |
-User interacts (typing, adding, clearing)                Renders TodoItem components
-|                                                       |
-+----------------+--------------------------------------+
-|
-+-------------v-------------+
-|     TodoItem              |
-|---------------------------|
-| Props:                    |
-|  - todo                   |
-|  - toggleCompletion()     |
-|  - removeTodo()           |
-+---------------------------+
-+-------------------------+
-|    App Component        |
-|-------------------------|
-| State:                 |
-|  - todos []            |
-|  - task (string)       |
-|-------------------------|
-| Functions:             |
-|  - addTodo()           |
-|  - toggleCompletion()  |
-|  - removeTodo()        |
-|  - clearTodos()        |
-+-----------+-------------+
-|
-Passes props: todos, setTask, addTodo, clearTodos
-|
-+----------------------------+----------------------------+
-|                                                        |
-+------v-------+                                          +-----v--------+
-| TodoInput    |                                          | TodoList     |
-|--------------|                                          |--------------|
-| Props:       |                                          | Props:       |
-|  - task      |                                          |  - todos[]   |
-|  - setTask() |                                          |  - toggleCompletion() |
-|  - addTodo() |                                          |  - removeTodo()      |
-|  - clearTodos()                                         |  - TodoItem          |
-+------^-------+                                          +-------^--------+
-|                                                       |
-|                                                       |
-User interacts (typing, adding, clearing)                Renders TodoItem components
-|                                                       |
-+----------------+--------------------------------------+
-|
-+-------------v-------------+
-|     TodoItem              |
-|---------------------------|
-| Props:                    |
-|  - todo                   |
-|  - toggleCompletion()     |
-|  - removeTodo()           |
-+---------------------------+
