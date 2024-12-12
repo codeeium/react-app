@@ -1,3 +1,6 @@
+
+![img.png](img.png)
+
 Benefits of This File Structure
 Separation of Concerns:
 
