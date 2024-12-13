@@ -3,7 +3,7 @@ import Container from './components/Container.jsx';
 import { ThemeContext, UserContext } from './context.jsx';
 
 const App = () => {
-    const [theme, setTheme] = useState('light'); // Removed type annotations
+    const [theme, setTheme] = useState('light');
     const [user, setUser] = useState({ name: 'John Doe', age: 30 }); // Removed type annotations
 
     const toggleTheme = () => {
