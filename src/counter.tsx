@@ -1,9 +1,20 @@
 import React, { useReducer } from 'react';
 
+// Define state type
+interface State {
+    count: number;
+}
+
+// Define action types
+interface Action {
+    type: 'increment' | 'decrement' | 'reset';
+}
+
 // Reducer function to manage state
 const initialState = { count: 0 };
 
-function reducer(state, action) {
+function reducer(state:State, action: Action) {
+
     switch (action.type) {
         case 'increment':
             return { count: state.count + 1 };
