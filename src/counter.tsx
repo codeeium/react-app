@@ -8,13 +8,14 @@ const Counter: React.FC = () => {
         let timer: ReturnType<typeof setInterval>;
 
         if (isRunning) {
-            timer = setInterval(() => {
+            timer =
+                setInterval(() => {
                 setCount((prevCount) => prevCount + 1);
             }, 1000);
         }
-
         return () => clearInterval(timer);
     }, [isRunning]);
+    console.log(count)
 
     const handlePause = () => {
         setIsRunning(false);
