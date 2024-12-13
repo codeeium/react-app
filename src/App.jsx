@@ -1,14 +1,15 @@
-import React, {useState} from 'react';
-import Container from './components/Container';
-import {ThemeContext, UserContext, UserContextType} from "./context";
+import React, { useState } from 'react';
+import Container from './components/Container.jsx';
+import { ThemeContext, UserContext } from './context.jsx';
 
 const App = () => {
-     const [theme, setTheme] = useState<'light' | 'dark'>('light');
-     const [user, setUser] = useState<UserContextType>({ name: 'John Doe', age: 30 });
+    const [theme, setTheme] = useState('light'); // Removed type annotations
+    const [user, setUser] = useState({ name: 'John Doe', age: 30 }); // Removed type annotations
 
-     const toggleTheme = () => {
+    const toggleTheme = () => {
         setTheme((curr) => (curr === 'light' ? 'dark' : 'light'));
     };
+
     return (
         <ThemeContext.Provider value={{ theme }}>
             <UserContext.Provider value={user}>
