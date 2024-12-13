@@ -1,7 +1,7 @@
 import React from 'react';
-import Counter from './counter';
+import Counter from './counter.jsx';
 
-const App: React.FC = () => {
+const App = () => {
     return (
         <>
             <Counter />
