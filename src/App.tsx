@@ -1,14 +1,17 @@
-// App.tsx
 import React from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
-import Header from "./Header";
-const App: React.FC = () => {
 
-    return (
-        <div className="container mt-4">
-            <Header />
-        </div>
-    );
+const App: React.FC = () => {
+  const handleClick = () => {
+    console.log("Button clicked");
+  };
+
+  return (
+    <div>
+      <h1>Hello, React TypeScript!</h1>
+      <button onClick={handleClick}>Click me</button>
+    </div>
+  );
 };
 
 export default App;
+
