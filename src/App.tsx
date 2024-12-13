@@ -1,5 +1,5 @@
 import React from 'react';
-import Counter from './counter';
+import Counter from './useEffectMessage';
 
 const App: React.FC = () => {
     return (
