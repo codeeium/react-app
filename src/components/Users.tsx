@@ -18,6 +18,7 @@ const Users = () => {
         <div style={textStyle}>
             <h2>Users List</h2>
             <User />
+            <User />
         </div>
     );
 };
