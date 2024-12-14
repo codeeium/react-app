@@ -4,6 +4,4 @@
 
 ! Reducer - {state, action} switch case
 
-! Counter -  
-
-! const [state, dispatch] = useReducer(reducer, initialState);
+! Counter() ->> const [state, dispatch] = useReducer(reducer, initialState);
