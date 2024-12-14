@@ -8,8 +8,7 @@ function App() {
     };
 
     return (
-        <div>
-        
+        <div>       
             <h1>Counter</h1>
             <p>Count: {count}</p>
             <button onClick={increment}>Increment</button>
