@@ -27,7 +27,7 @@ const App: React.FC = () => {
         };
 
         fetchPosts();
-    }, []);
+    }, [posts]);
 
     if (loading) {
         return <div>Loading...</div>;
@@ -43,7 +43,7 @@ const App: React.FC = () => {
             <ul>
                 {posts.map((post) => (
                     <li key={post.id}>
-                        <h2>{post.title}</h2>
+                        {/*<h2>{post.title}</h2>*/}
                         <p>{post.body}</p>
                     </li>
                 ))}
