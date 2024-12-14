@@ -36,3 +36,26 @@ VALUES ('ellan', 4000);
 
 
 select * from public.sales
+
+----------
+----------
+
+-- Create sales table
+CREATE TABLE sales (
+id INT PRIMARY KEY,
+name VARCHAR(100)
+);
+
+-- Create customers table
+CREATE TABLE customers (
+id SERIAL PRIMARY KEY,
+name VARCHAR(100),
+email VARCHAR(100)
+);
+
+-- Create orders table
+CREATE TABLE orders (
+id SERIAL PRIMARY KEY,
+customer_id INT REFERENCES customers(id),
+order_amount INT
+);
