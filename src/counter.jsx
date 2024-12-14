@@ -1,7 +1,8 @@
 import React, { useReducer } from 'react';
 
 // Reducer function to manage state
-const initialState = { count: 0 };
+const initialState =
+    { count: 0 };
 
 function reducer(state, action) {
     switch (action.type) {
