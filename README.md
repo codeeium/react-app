@@ -15,4 +15,3 @@
 | `dispatch({ type: 'decrement' })` | Action dispatched to decrement the count. |
 | `dispatch({ type: 'reset' })`     | Action dispatched to reset the count to 0. |
 
-
