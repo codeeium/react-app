@@ -2,7 +2,7 @@
 
 ! initialState = { count: 0 };
 
-! Reducer - {state, action}
+! Reducer - {state, action} switch case
 
 ! Counter -  
 
