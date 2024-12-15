@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "target": "ES2015",      // or "ES2020", "ES2021"
+    "lib": ["ES2015", "DOM"],  // Ensure ES2015 is included
+    "module": "commonjs",    // Or any module system you are using
+    "strict": true,
+    "allowSyntheticDefaultImports": true
+    // Optionally enable strict type checking
+
+    // Other compiler options...
+  }
+}
