@@ -32,11 +32,11 @@ function UseReduer_Counter() {
 
     return (
         <div>
-            <p>UseReducer Counter</p>
+            <p>--------UseReducer Counter----------</p>
             <p>Count: {state.count}</p>
-            <button onClick={() => dispatch({ type: 'increment' })}>Increment</button>
-            <button onClick={() => dispatch({ type: 'decrement' })}>Decrement</button>
-            <button onClick={() => dispatch({ type: 'reset' })}>Reset</button>
+            <button onClick={() => dispatch({type: 'increment'})}>Increment</button>
+            <button onClick={() => dispatch({type: 'decrement'})}>Decrement</button>
+            <button onClick={() => dispatch({type: 'reset'})}>Reset</button>
         </div>
     );
 }

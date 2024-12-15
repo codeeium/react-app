@@ -1,8 +1,9 @@
 import React, { useReducer } from 'react';
 
+
+
 // Reducer function to manage state
-const initialState =
-    { count: 0 };
+const initialState = { count: 0 };
 
 function reducer(state, action) {
     switch (action.type) {
@@ -23,10 +24,11 @@ function UseReduer_Counter() {
 
     return (
         <div>
+            <p>--------UseReducer Counter----------</p>
             <p>Count: {state.count}</p>
-            <button onClick={() => dispatch({ type: 'increment' })}>Increment</button>
-            <button onClick={() => dispatch({ type: 'decrement' })}>Decrement</button>
-            <button onClick={() => dispatch({ type: 'reset' })}>Reset</button>
+            <button onClick={() => dispatch({type: 'increment'})}>Increment</button>
+            <button onClick={() => dispatch({type: 'decrement'})}>Decrement</button>
+            <button onClick={() => dispatch({type: 'reset'})}>Reset</button>
         </div>
     );
 }
