@@ -1,19 +1,10 @@
 import React, { useReducer } from 'react';
 
-// Define types for the state and action
-interface State {
-    count: number;
-}
-
-type Action =
-    | { type: 'increment' }
-    | { type: 'decrement' }
-    | { type: 'reset' };
-
 // Reducer function to manage state
-const initialState: State = { count: 0 };
+const initialState =
+    { count: 0 };
 
-function reducer(state: State, action: Action): State {
+function reducer(state, action) {
     switch (action.type) {
         case 'increment':
             return { count: state.count + 1 };
@@ -26,7 +17,7 @@ function reducer(state: State, action: Action): State {
     }
 }
 
-function Counter() {
+function UseReduer_Counter() {
     // useReducer hook takes the reducer function and initial state
     const [state, dispatch] = useReducer(reducer, initialState);
 
@@ -40,4 +31,4 @@ function Counter() {
     );
 }
 
-export default Counter;
+export default UseReduer_Counter;

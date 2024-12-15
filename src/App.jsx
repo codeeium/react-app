@@ -1,10 +1,12 @@
 import React from 'react';
-import Counter from './TSX/counter.tsx';
+import UseReduer_Counter from './TSX/UseReduer_Counter.tsx';
+import UseState_Counter from './TSX/UseState_Counter.tsx';
 
 const App = () => {
     return (
         <>
-            <Counter />
+            <UseState_Counter />
+            <UseReduer_Counter />
         </>
     );
 };

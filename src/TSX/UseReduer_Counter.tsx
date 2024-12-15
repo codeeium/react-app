@@ -1,10 +1,19 @@
 import React, { useReducer } from 'react';
 
-// Reducer function to manage state
-const initialState =
-    { count: 0 };
+// Define types for the state and action
+interface State {
+    count: number;
+}
 
-function reducer(state, action) {
+type Action =
+    | { type: 'increment' }
+    | { type: 'decrement' }
+    | { type: 'reset' };
+
+// Reducer function to manage state
+const initialState: State = { count: 0 };
+
+function reducer(state: State, action: Action): State {
     switch (action.type) {
         case 'increment':
             return { count: state.count + 1 };
@@ -17,12 +26,13 @@ function reducer(state, action) {
     }
 }
 
-function Counter() {
+function UseReduer_Counter() {
     // useReducer hook takes the reducer function and initial state
     const [state, dispatch] = useReducer(reducer, initialState);
 
     return (
         <div>
+            <p>UseReducer Counter</p>
             <p>Count: {state.count}</p>
             <button onClick={() => dispatch({ type: 'increment' })}>Increment</button>
             <button onClick={() => dispatch({ type: 'decrement' })}>Decrement</button>
@@ -31,4 +41,4 @@ function Counter() {
     );
 }
 
-export default Counter;
+export default UseReduer_Counter;
