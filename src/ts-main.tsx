@@ -5,7 +5,7 @@ import App from './ts-App';
 // import App from './ts-App-full';
 
 const root = ReactDOM.createRoot(
-    document.getElementById('root') as HTMLElement // Type assertion for `getElementById`
+    document.getElementById('root')! as HTMLElement // Type assertion for `getElementById`
 );
 
 root.render(
