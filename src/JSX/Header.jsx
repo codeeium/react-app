@@ -1,9 +1,9 @@
 import React from 'react';
 
-const Header: React.FC = () => {
+const Header = () => {
     return (
         <>
-            <h1 className="text-center"> Hello World</h1>
+            <h1 className="text-black"> Hello World</h1>
         </>
     );
 };
