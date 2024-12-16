@@ -18,7 +18,7 @@ Router - navigation - link
 BrowserRouter
 
 single page application
-![img_3.png](img_3.png)
+
 
 ![img_1.png](img_1.png)
 
