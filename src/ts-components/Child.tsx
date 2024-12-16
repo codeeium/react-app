@@ -1,7 +1,10 @@
-
 import React from 'react';
 
-const Child = ({ onSendMessage }) => {
+interface ChildProps {
+    onSendMessage: (message: string) => void; // Define the type for the prop
+}
+
+const Child: React.FC<ChildProps> = ({ onSendMessage }) => {
     return (
         <div>
             <button onClick={() => onSendMessage("Hello from the Child!")}>
