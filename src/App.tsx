@@ -1,16 +1,13 @@
-import React, { useContext } from 'react';
-import { MyProvider, MyContext } from './Mycontext';
+import React from "react";
+import Counter from "./UseState";
 
-const MyComponent: React.FC = () => {
-    const value = useContext(MyContext); // Access the context value
-    return <div>{value}</div>; // Display the context value
-};
 
-const App: React.FC = () => {
+const App = () => {
     return (
-        <MyProvider>
-            <MyComponent />
-        </MyProvider>
+        <>
+            <h1>Welcome to react hooks</h1>
+            <Counter/>
+        </>
     );
 };
 
