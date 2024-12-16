@@ -1,6 +1,6 @@
 import React from 'react';
-import Parent from "./components/Parent.jsx";
-import ContextProvider from './components/ContextProvider';
+import Parent from "./js-components/Parent.jsx";
+import ContextProvider from './js-components/ContextProvider';
 
 const App = () => {
     return (
