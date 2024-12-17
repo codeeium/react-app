@@ -1,12 +1,15 @@
-// main.jsx
 import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App';  // Import the root App component
-import './index.css';
+import ReactDOM from 'react-dom/client'; // Use 'react-dom/client' for React 18+
+import App from './App';
+import { CartProvider } from './context/CartContext';
 
+const container = document.getElementById('root'); // Get the root container
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-    <React.StrictMode>
-        <App />
-    </React.StrictMode>,
-)
+if (container) {
+    const root = ReactDOM.createRoot(container); // Create a root using createRoot API
+    root.render(
+        <CartProvider>
+            <App />
+        </CartProvider>
+    );
+}

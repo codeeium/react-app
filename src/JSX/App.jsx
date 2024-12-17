@@ -1,14 +1,19 @@
-// App.js
 import React from 'react';
-import Form from './Form';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './pages/Home';
+import ProductDetails from './pages/ProductDetails';
+import Cart from './pages/Cart.jsx';
 
-const App = () => {
+function App() {
     return (
-        <div>
-            <h2>React Form with Validation</h2>
-            <Form />
-        </div>
+        <Router>
+            <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/product/:id" element={<ProductDetails />} />
+                <Route path="/cart" element={<Cart />} />
+            </Routes>
+        </Router>
     );
-};
+}
 
 export default App;
