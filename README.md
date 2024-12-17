@@ -50,3 +50,6 @@ APICall -->|Failure| DispatchFetchDataFailure
 DispatchFetchDataSuccess --> RenderState
 DispatchFetchDataFailure --> RenderState
 RenderState --> End
+
+
+![img_1.png](img_1.png)

@@ -42,7 +42,8 @@ export const fetchDataFailure = (error: Error): FetchDataFailureAction => ({
 // Async action creator using Redux Thunk
 import { Dispatch } from "redux";
 
-export const fetchData = () => {
+export const fetchData =
+    () => {
     return (dispatch: Dispatch<FetchActions>) => {
         dispatch(fetchDataStart());
 
@@ -52,3 +53,7 @@ export const fetchData = () => {
             .catch((error) => dispatch(fetchDataFailure(error)));
     };
 };
+/*
+dispatch from redux is used
+fetch data, if success, if fail what happen
+ */
