@@ -1,50 +1,26 @@
-// App.js
-import React, {useState} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import {addItem} from './actions.js';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchData } from './actions';
+import { RootState, AppDispatch } from'./store'
 
+const App: React.FC = () => {
+    const dispatch: AppDispatch = useDispatch();
 
-// Define the types for the items in the state
-interface Item {
-    id: number;
-    name: string;
-}
+    // Select state with proper typing
+    const { data, loading, error } = useSelector((state: RootState) => state);
 
-// Define the type of the state to be used in useSelector
-interface RootState {
-    items: Item[];
-}
+    // Dispatch the async fetchData action on component mount
+    useEffect(() => {
+        dispatch(fetchData());
+    }, [dispatch]);
 
-const App = () => {
-    const [itemName, setItemName] = useState('');
-    const dispatch = useDispatch();
-    const items = useSelector((state: RootState) => state.items);
-
-    const handleAddItem = () => {
-        if (itemName) {
-            const newItem = {id: Date.now(), name: itemName};
-            dispatch(addItem(newItem));  // Dispatch the action
-            setItemName('');  // Reset input field
-        }
-    };
+    if (loading) return <p>Loading...</p>;
+    if (error) return <p>Error: {error.message}</p>;
 
     return (
         <div>
-            <h1>Item List Redux </h1>
-            <h1>the reducer function </h1>
-            <input
-                type="text"
-                value={itemName}
-                onChange={(e) => setItemName(e.target.value)}
-                placeholder="Enter item name"
-            />
-            <button onClick={handleAddItem}>Add Item</button>
-
-            <ul>
-                {items.map(item => (
-                    <li key={item.id}>{item.name}</li>
-                ))}
-            </ul>
+            <h1>Fetched Data</h1>
+            <pre>{JSON.stringify(data, null, 2)}</pre>
         </div>
     );
 };

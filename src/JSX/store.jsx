@@ -1,8 +1,11 @@
-import { configureStore } from '@reduxjs/toolkit';
-import itemsReducer from './reducers';
+// store.js
 
+import { configureStore } from '@reduxjs/toolkit';
+import dataReducer from './reducers';
+
+// Create the Redux store using configureStore
 const store = configureStore({
-    reducer: itemsReducer,
+    reducer: dataReducer,
 });
 
 export default store;
