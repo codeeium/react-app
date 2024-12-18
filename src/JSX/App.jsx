@@ -14,7 +14,10 @@ const App = () => {
     };
 
     const checkout = () => {
-        alert(`Your total is $${cart.reduce((acc, item) => acc + item.price, 0).toFixed(2)}. Thank you for shopping!`);
+        alert(`Your total is $${
+            cart.reduce(
+                (acc, item) => acc + item.price, 0).toFixed(2)
+        }. Thank you for shopping!`);
         setCart([]); // Clear the cart after checkout
     };
 
