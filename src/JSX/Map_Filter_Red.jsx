@@ -1,5 +1,11 @@
 import React, { useState } from 'react';
 
+/*
+
+Filter then map to display
+then reduce to calculate total
+
+ */
 function M_F_R() {
     // Example product data
     const products = [
