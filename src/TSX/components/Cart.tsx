@@ -1,10 +1,25 @@
 import React from 'react';
 
-const Cart = ({ cartItems, removeFromCart, checkout }) => {
+// Define types for the CartItem and CartProps
+interface CartItem {
+    id: number;
+    name: string;
+    price: number;
+    image: string;
+}
 
-    const calculateTotal = () => {
-        return cartItems.reduce(
-            (acc, item) => acc + item.price, 0).toFixed(2);
+interface CartProps {
+    cartItems: CartItem[];
+    removeFromCart: (item: CartItem) => void;
+    checkout: () => void;
+}
+
+const Cart: React.FC<CartProps> =
+    ({cartItems, removeFromCart, checkout}) => {
+
+    const calculateTotal = (): string => {
+        return cartItems.reduce((acc, item) =>
+            acc + item.price, 0).toFixed(2);
     };
 
     return (
@@ -16,9 +31,9 @@ const Cart = ({ cartItems, removeFromCart, checkout }) => {
                 <ul>
                     {cartItems.map((item, index) => (
                         <li key={index}>
-                            <img src={item.image} alt={item.name} />
+                            <img src={item.image} alt={item.name}/>
                             <p>{item.name}</p>
-                            <p>{item.price}</p>
+                            <p>${item.price}</p>
                             <button onClick={() => removeFromCart(item)}>Remove</button>
                         </li>
                     ))}
