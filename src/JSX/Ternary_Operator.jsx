@@ -44,12 +44,12 @@ function App() {
                 <h1>Conditional Rendering</h1>
                 <button onClick={() => alert('Hello, World!')}>Click Me</button>
             </>
-            <>
-                <h1>Conditional Rendering</h1>
-                <h1>Conditional Class Assignment</h1>
-                <h1>Conditional Inline Styling</h1>
-                <h1>Nested Ternary (Use with caution)</h1>
-            </>
+            {/*<>*/}
+            {/*    <h1>Conditional Rendering</h1>*/}
+            {/*    <h1>Conditional Class Assignment</h1>*/}
+            {/*    <h1>Conditional Inline Styling</h1>*/}
+            {/*    <h1>Nested Ternary (Use with caution)</h1>*/}
+            {/*</>*/}
         </div>
     );
 }
