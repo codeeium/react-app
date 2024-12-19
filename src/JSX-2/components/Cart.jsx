@@ -1,13 +1,6 @@
 import React from 'react';
 
-const Cart = ({ cartItems, removeFromCart, checkout }) => {
-
-    const calculateTotal = () => {
-        return cartItems.reduce(
-            (acc, item) => acc + item.price, 0).toFixed(2);
-    };
-
-
+const Cart = ({ cartItems, removeFromCart }) => {
     return (
         <div className="cart">
             <h2>Your Cart</h2>
@@ -19,18 +12,12 @@ const Cart = ({ cartItems, removeFromCart, checkout }) => {
                         <li key={index}>
                             <img src={item.image} alt={item.name} />
                             <p>{item.name}</p>
-                            <p>{item.price}</p>
+                            <p>${item.price}</p>
                             <button onClick={() => removeFromCart(item)}>Remove</button>
                         </li>
                     ))}
                 </ul>
             )}
-            <div>
-                <h3>Total: ${calculateTotal()}</h3>
-                <button onClick={checkout} disabled={cartItems.length === 0}>
-                    Checkout
-                </button>
-            </div>
         </div>
     );
 };

@@ -27,3 +27,8 @@ cartItem.length === 0 ? 'Cart is empty' : cartItem.map((item, index) => (
 reduce - for total and checkout total
 ternary operator - for empty cart (if condition true or false)
 map (item,index)
+---
+"First, filter the items, 
+then map over them to display, 
+and finally reduce the list to calculate the total count."
+----
