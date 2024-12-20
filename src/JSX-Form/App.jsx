@@ -1,12 +1,13 @@
 import React from 'react';
-import { Provider } from 'react-redux';
-import store from './store';
-import UIForm from './UI-Form.jsx';
+import FocusWithState from "./Counter.jsx";
 
-const App = () => (
-    <Provider store={store}>
-        <UIForm />
-    </Provider>
-);
+const App = () => {
+    return (
+        <div>
+            <h1>Welcome to the Counter App</h1>
+            <FocusWithState />
+        </div>
+    );
+};
 
 export default App;
