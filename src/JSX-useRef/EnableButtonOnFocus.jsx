@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 
 const EnableButtonOnFocus = () => {
-    const [isButtonEnabled, setIsButtonEnabled] = useState(false);
+    const [isButtonEnabled, setIsButtonEnabled] =
+        useState(false);
 
     const handleFocus = () => {
         setIsButtonEnabled(true); // Enable the button on focus

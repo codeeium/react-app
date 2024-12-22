@@ -1,6 +1,6 @@
-import React, { useState, useMemo } from "react";
+import React, {useState, useMemo} from "react";
 
-const ExpensiveCalculation = () => {
+const ExpensiveCal = () => {
     const [count, setCount] = useState(0);
     const [text, setText] = useState("");
 
@@ -23,4 +23,4 @@ const ExpensiveCalculation = () => {
     );
 };
 
-export default ExpensiveCalculation;
+export default ExpensiveCal;
