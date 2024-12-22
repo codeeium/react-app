@@ -3,7 +3,7 @@
 ![img_5.png](img_5.png)
 
 useState – State
-useEffect – Side-effects
+useEffect – Side effects
 useContext – Context
 useReducer – Reducer
 useRef – Reference
