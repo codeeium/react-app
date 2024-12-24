@@ -109,15 +109,6 @@ Let me know if you need help with setting up or configuring MongoDB further!
 ---
 
 
-mongodb mongosh
-Current Mongosh Log ID:	67681f95024175621a73a585
-Connecting to:		mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.3.7
-Using MongoDB:		8.0.4
-Using Mongosh:		2.3.7
-
-For mongosh info see: https://www.mongodb.com/docs/mongodb-shell/
-
-
 To help improve our products, anonymous usage data is collected and sent to MongoDB periodically (https://www.mongodb.com/legal/privacy-policy).
 You can opt-out by running the disableTelemetry() command.
 
@@ -131,13 +122,15 @@ mongodb://localhost:27017/
 
 
 --------
-
-
-Om Bheem Bush
+For local mongo db 
 
 source .zshrc
 export PATH=${PATH}:/Users/developer1/mongodb-macos-x86_64-8.0.4/bin
+alias startmongo='mongod --dbpath /Users/developer1/data/db/'
 
 mongod --dbpath=/Users/developer1/data/db
+startmongo
 
+node index.js
 PORT=5001 node server.mjs
+
