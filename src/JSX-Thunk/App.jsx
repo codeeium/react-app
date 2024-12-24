@@ -17,7 +17,9 @@ const App = () => {
             {loading && <p>Loading...</p>}  {/* Show loading state */}
             {error && <p>Error: {error}</p>}  {/* Show error message */}
             {data && data.length > 0 ? (
-                data.map((post) => <div key={post.id}>{post.title}</div>)  // Show posts if data exists
+                data.map((post) =>
+                    <div key={post.id}>
+                        {post.id} - {post.title}</div>)  // Show posts if data exists
             ) : null}
         </div>
     );
