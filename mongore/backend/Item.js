@@ -6,6 +6,6 @@ const salesSchema = new mongoose.Schema({
     year: { type: Number, required: true } // Correctly using required: true
 });
 
-const salesModel = mongoose.model('Sales', salesSchema);
+const salesModel = mongoose.model('salescol', salesSchema);
 
 module.exports = salesModel;

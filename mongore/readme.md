@@ -57,3 +57,16 @@ console.log(`Server is running on port ${PORT}`);
 'mongodb+srv://dev1:Piller1234@salescluster.2w4ug.mongodb.net/sales?retryWrites=true&w=majority&appName=salescluster'
 'mongodb+srv://dev1:Piller1234@salescluster.2w4ug.mongodb.net/sales?retryWrites=true&w=majority&appName=salescluster'
 'mongodb+srv://dev1:Piller1234@salescluster.2w4ug.mongodb.net/sales?retryWrites=true&w=majority&appName=salescluster'
+
+
+'mongodb+srv://dev1:Piller1234@salescluster.2w4ug.mongodb.net/sales?retryWrites=true&w=majority'
+'mongodb+srv://dev1:Piller1234@salescluster.2w4ug.mongodb.net/sales?retryWrites=true&w=majority'
+'mongodb+srv://dev1:Piller1234@salescluster.2w4ug.mongodb.net/sales?retryWrites=true&w=majority'
+------
+new db
+mongodb+srv://dev1:Piller1234@salescluster.au1lk.mongodb.net/?retryWrites=true&w=majority&appName=salescluster
+mongodb+srv://dev1:Piller1234@salescluster.au1lk.mongodb.net/?retryWrites=true&w=majority&appName=salescluster
+
+
+mongodb://atlas-sql-676b27ab15d2b52dcfdd5a9d-au1lk.a.query.mongodb.net/salesdb?ssl=true&authSource=admin
+mongodb+srv://dev1:Piller1234@salescluster.au1lk.mongodb.net/

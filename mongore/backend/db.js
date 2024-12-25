@@ -1,22 +1,44 @@
-const mongoose = require('mongoose');
+require('dotenv').config();
+const { MongoClient } = require('mongodb');
 
-const connectDB = async () => {
+// Load connection URL and database name from environment variables
+const url = process.env.MONGO_URL;
+const dbName = process.env.DB_NAME;
+
+if (!url || !dbName) {
+    console.error('Missing MongoDB URL or Database Name in environment variables.');
+    process.exit(1);
+}
+
+// Create a new MongoClient instance
+const client = new MongoClient(url);
+
+// Function to connect to the database
+async function connectToDatabase() {
     try {
-        // Ensure the MongoDB URI is properly constructed.
-        const dbURI =
-            // 'mongodb+srv://dev1:Piller1234@salescluster.2w4ug.mongodb.net/sales?retryWrites=true&w=majority&appName=salescluster'
-        'mongodb+srv://dev1:piller1234@salescluster.2w4ug.mongodb.net'
-        // Connect to MongoDB
-        await mongoose.connect(dbURI);
+        // Connect the client to the server
+        await client.connect();
+        console.log('Connected successfully to MongoDB server');
 
-        // Log successful connection
-        console.log(`Connected to MongoDB: ${mongoose.connection.host}`);
-    } catch (error) {
-        // Handle connection errors
-        console.error('Failed to connect to MongoDB:', error.message);
-        process.exit(1); // Exit with failure code
+        // Select the database
+        const db = client.db(dbName);
+
+        // List collections in the database
+        const collections = await db.collections();
+        const collectionNames = collections.map(({ collectionName }) => collectionName);
+        console.log('Collections:', collectionNames);
+
+    } catch (err) {
+        console.error('Database connection error:', err.message);
+    } finally {
+        // Close the connection
+        await client.close();
     }
-};
+}
 
-// Export the connectDB function to use it in other files.
-module.exports = connectDB;
+// Call the function to connect to the database
+connectToDatabase().catch(
+    err => console.error('Unexpected error:', err.message)
+);
+
+module.exports = connectToDatabase;
