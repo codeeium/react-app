@@ -12,6 +12,11 @@ const App = () => {
     const handleRemoveFromCart = (product) =>
         removeFromCart(product, setCart);
 
+    const incrementQuantity = (product) =>
+        addToCart(product, setCart);
+    const decrementQuantity = (product) =>
+        removeFromCart(product, setCart);
+
     const checkout = () => {
         alert(`Your total is $$${
             cart.reduce((acc, item) => 
@@ -24,7 +29,9 @@ const App = () => {
         <div className="App">
             <h1>Simple Shopping Cart</h1>
             <ProductList addToCart={handleAddToCart} />
-            <Cart cartItems={cart} removeFromCart={handleRemoveFromCart} />
+            <Cart cartItems={cart}
+                  removeFromCart={handleRemoveFromCart}
+            />
             <CartActions
                 cartItems={cart}
                 checkout={checkout}
