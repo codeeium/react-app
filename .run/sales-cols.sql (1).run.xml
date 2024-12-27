@@ -1,0 +1,7 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="sales-cols.sql (1)" type="DatabaseScript" editBeforeRun="true" nameIsGenerated="true">
+    <data-source id="05cbfca2-302c-42ff-8358-11ab1e019d7a" namespace="schema/&quot;salesdb&quot;" />
+    <script-text>db.orders.aggregate([{ $lookup: { from: &quot;customers&quot;, localField: &quot;customer_id&quot;, foreignField: &quot;_id&quot;, as: &quot;customer_info&quot; } }, { $unwind: &quot;$customer_info&quot; }, { $match: { &quot;customer_info.status&quot;: &quot;Active&quot; } }]);</script-text>
+    <method v="2" />
+  </configuration>
+</component>
