@@ -97,3 +97,12 @@ button:hover {
     background-color: #ccc;
     cursor: not-allowed;
 }
+button {
+    padding: 5px 10px;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #f0f0f0;
+}

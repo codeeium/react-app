@@ -1,6 +1,8 @@
 import React from 'react';
 
-const Cart = ({ cartItems, removeFromCart }) => {
+
+const Cart = ({ cartItems, removeFromCart, incrementQuantity, decrementQuantity }) => {
+
     return (
         <div className="cart">
             <h2>Your Cart</h2>
@@ -11,7 +13,12 @@ const Cart = ({ cartItems, removeFromCart }) => {
                     {cartItems.map((item, index) => (
                         <li key={index}>
                             <img src={item.image} alt={item.name} />
-                            <p>{item.name} x {item.quantity}</p>
+                            <p>{item.name}</p>
+                            <div>
+                                <button onClick={() => decrementQuantity(item)}>-</button>
+                                <span>{item.quantity}</span>
+                                <button onClick={() => incrementQuantity(item)}>+</button>
+                            </div>
                             <p>${(item.price * item.quantity).toFixed(2)}</p>
                             <button onClick={() => removeFromCart(item)}>Remove</button>
                         </li>
