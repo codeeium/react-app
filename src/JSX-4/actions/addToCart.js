@@ -1,5 +1,4 @@
-// src/actions/addToCart.js
-export const addToCart = (product, cart, setCart) => {
+export const addToCart = (product, setCart) => {
     setCart((prevCart) => {
         const existingProduct = prevCart.find(item => item.id === product.id);
 
