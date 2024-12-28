@@ -18,12 +18,20 @@ const App = () => {
         Decrement(product, setCart);  // Fixed to call Decrement instead of removeFromCart
 
     const checkout = () => {
-        alert(`Your total is $$${
-            cart.reduce((acc, item) =>
-                acc + item.price * item.quantity, 0).toFixed(2)
-        }. Thank you for shopping!`);
+        const alertMessage = document.createElement('div');
+        alertMessage.className = 'custom-alert';
+        alertMessage.textContent = `Your total is $${cart.reduce((acc, item) =>
+            acc + item.price * item.quantity, 0).toFixed(2)}. Thank you for shopping!`;
+
+        document.body.appendChild(alertMessage);
+
+        setTimeout(() => {
+            alertMessage.remove();
+        }, 3000);  // Auto-dismiss after 3 seconds
+
         setCart([]);
     };
+
 
     return (
         <div className="App">
