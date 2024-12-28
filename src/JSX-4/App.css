@@ -2,11 +2,14 @@
 .App {
     text-align: center;
     font-family: 'Arial', sans-serif;
-    padding: 20px;
+    padding: 10px;
+    background-color: #eace0f;
 }
+
 
 h1 {
     color: #333;
+    background-color: #e9e9f1;
 }
 
 /* Product List Styling */
@@ -15,6 +18,7 @@ h1 {
     justify-content: center;
     gap: 20px;
     margin: 20px 0;
+    background-color: #edafcb;
 }
 
 .product-card {
@@ -24,18 +28,23 @@ h1 {
     width: 220px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     text-align: center;
+    background-color: #ede5af;
 }
 
 /* Uniform Image Sizing */
 .product-card img {
-    width: 180px;      /* Set a fixed width */
-    height: 180px;     /* Set a fixed height */
+    width: 180px; /* Set a fixed width */
+    height: 180px; /* Set a fixed height */
     object-fit: cover; /* Ensure images scale correctly without distortion */
     border-radius: 5px;
     margin-bottom: 10px;
     border: 1px solid #ccc;
+    background-color: #afc1ed;
 }
 
+.product-card:hover {
+    background-color: #e10f0f;
+}
 /* Button Styling */
 button {
     background-color: #28a745;
@@ -74,7 +83,7 @@ button:hover {
 }
 
 .cart li img {
-    width: 80px;   /* Set cart item image size */
+    width: 80px; /* Set cart item image size */
     height: 80px;
     object-fit: cover;
     margin-right: 10px;
@@ -97,6 +106,7 @@ button:hover {
     background-color: #ccc;
     cursor: not-allowed;
 }
+
 button {
     padding: 5px 10px;
     margin: 0 5px;
