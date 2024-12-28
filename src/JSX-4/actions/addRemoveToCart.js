@@ -12,6 +12,15 @@ export const addToCart = (product, setCart) => {
     });
 };
 
+export const Decrement = (product, setCart) => {
+    setCart((prevCart) => {
+        return prevCart
+            .map(item =>
+                item.id === product.id ? { ...item, quantity: item.quantity - 1 } : item
+            )
+            .filter(item => item.quantity > 0);  // Remove item if quantity hits 0
+    });
+};
 
 export const removeFromCart = (product, setCart) => {
     setCart((prevCart) => prevCart.filter(item => item.id !== product.id));

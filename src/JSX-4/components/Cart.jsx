@@ -1,8 +1,6 @@
 import React from 'react';
 
-
-const Cart = ({ cartItems, removeFromCart, incrementQuantity, decrementQuantity }) => {
-
+const Cart = ({ cartItems, removeFromCart, increment, decrement }) => {
     return (
         <div className="cart">
             <h2>Your Cart</h2>
@@ -15,9 +13,9 @@ const Cart = ({ cartItems, removeFromCart, incrementQuantity, decrementQuantity 
                             <img src={item.image} alt={item.name} />
                             <p>{item.name}</p>
                             <div>
-                                <button onClick={() => decrementQuantity(item)}>-</button>
+                                <button onClick={() => decrement(item)}>-</button>  {/* Properly calls decrement */}
                                 <span>{item.quantity}</span>
-                                <button onClick={() => incrementQuantity(item)}>+</button>
+                                <button onClick={() => increment(item)}>+</button>
                             </div>
                             <p>${(item.price * item.quantity).toFixed(2)}</p>
                             <button onClick={() => removeFromCart(item)}>Remove</button>
