@@ -19,3 +19,22 @@ Extensible: You can extend its functionality with various libraries and middlewa
 
 Popular: Express is one of the most widely-used frameworks 
 for building web servers and APIs in the Node.js ecosystem.
+
+
+----
+
+
+API Performance Tips -
+1.Pagination
+2.Asynchronous logging
+3.Caching
+4.Payload compression
+5.Connection pooling
+
+Lazy loading
+images memoization
+Throttling and Debouncing Events
+Code-splitting
+react fragments
+web workers
+useTransition hook
