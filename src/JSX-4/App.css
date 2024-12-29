@@ -48,10 +48,10 @@ h1 {
 /* Button Styling */
 button {
     background-color: #28a745;
-    color: white;
+    color: #ffffff;
     border: none;
     padding: 10px 15px;
-    border-radius: 5px;
+    border-radius: 50px;
     cursor: pointer;
 }
 
@@ -71,7 +71,7 @@ button:hover {
 }
 
 .cart:hover {
-    background-color: #e10f0f;
+    background-color: #f30934;
 }
 .cart ul {
     list-style: none;

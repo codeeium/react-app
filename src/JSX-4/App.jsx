@@ -37,6 +37,7 @@ const App = () => {
         <div className="App">
             <h1>Simple Shopping Cart</h1>
             <ProductList addToCart={handleAddToCart} />
+
             <Cart cartItems={cart}
                   removeFromCart={handleRemoveFromCart}
                   increment={incrementQuantity}

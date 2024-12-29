@@ -10,10 +10,12 @@ const Cart = ({ cartItems, removeFromCart, increment, decrement }) => {
                 <ul>
                     {cartItems.map((item, index) => (
                         <li key={index}>
-                            <img src={item.image} alt={item.name} />
+                            <p>{item.id}</p>
+                            <img src={item.image} alt={item.name}/>
                             <p>{item.name}</p>
                             <div>
-                                <button onClick={() => decrement(item)}>-</button>  {/* Properly calls decrement */}
+                                <button onClick={() => decrement(item)}>-</button>
+                                {/* Properly calls decrement */}
                                 <span>{item.quantity}</span>
                                 <button onClick={() => increment(item)}>+</button>
                             </div>
