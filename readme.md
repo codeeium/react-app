@@ -1,4 +1,5 @@
 API Performance Tips -
+
 1.Pagination
 2.Asynchronous logging
 3.Caching
