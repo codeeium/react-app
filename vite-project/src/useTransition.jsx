@@ -37,4 +37,4 @@ function App_useTransition() {
     );
 }
 
-export default App_useTransition;
+export default <App_useTransition></App_useTransition>;

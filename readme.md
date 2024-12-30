@@ -49,5 +49,17 @@ API Performance Tips -
 * -----------------------------------------------------------
 * -----------------------------------------------------------
 * 
-
-
+* Pagination: Dividing large datasets into smaller, manageable chunks to improve performance and user experience.
+* Asynchronous Logging: Logging data asynchronously to avoid blocking the main thread and improve application performance.
+* Caching: Storing frequently accessed data temporarily to reduce loading time and improve performance.
+* Payload Compression: Reducing the size of data transmitted over the network to improve speed and reduce latency.
+* Connection Pooling: Reusing database connections to minimize the overhead of creating new connections, improving efficiency.
+* Lazy Loading: Delaying the loading of resources or components until they are needed to improve initial load time.
+* Image Memoization: Storing previously loaded images to avoid redundant fetch requests and improve performance.
+* Throttling and Debouncing Events: Controlling the rate of event execution to improve performance and reduce unnecessary operations.
+* Code-Splitting: Breaking down large JavaScript files into smaller, more manageable chunks to optimize loading times.
+* React Fragments: A component that allows grouping of multiple elements without adding extra nodes to the DOM.
+* Web Workers: Running JavaScript code in the background on a separate thread to prevent UI freezing and improve performance.
+* useTransition Hook: A React hook that allows managing concurrent tasks, providing smoother transitions in UI updates.
+* List Virtualization or Windowing: Rendering only the visible items in a large list to improve performance by minimizing the number of DOM elements.
+* 
