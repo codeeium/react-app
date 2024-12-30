@@ -13,6 +13,8 @@ API Performance Tips -
 12. useTransition hook
 13. List Virtualization or Windowing
 
+-----------------------------------------------------------
+-----------------------------------------------------------
 
 git clone --depth 1 https://github.com/your-repo.git
 
@@ -24,3 +26,6 @@ done
 
 git fetch --all
 git pull --all
+
+-----------------------------------------------------------
+-----------------------------------------------------------
