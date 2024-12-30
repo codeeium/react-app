@@ -13,20 +13,22 @@ import Appreactfragments from "./react-fragments.jsx"
 import App_workers from "./app-worker.jsx";
 import App_useTransition from "./useTransition.jsx";
 import App_virtualization from "./virtualization.jsx";
+import Pagination2 from "./test.jsx";
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <Pagination />
-      <AsyncLogger/>
-      {/*<CachingExample/>*/}
+      {/*<Pagination2/>*/}
+    {/*<Pagination />*/}
+    {/*  <AsyncLogger/>*/}
+      <CachingExample/>
       {/*<CompressionExample/>*/}
-      <Lazy/>
-      <ImageMemoizationExample/>
-      <App/>
-    <LazyComponent/>
-      <appLazyComponent/>
-      <Appreactfragments/>
-    <App_workers/>
-    <App_useTransition/>
+    {/*  <Lazy/>*/}
+    {/*  <ImageMemoizationExample/>*/}
+    {/*  <App/>*/}
+    {/*<LazyComponent/>*/}
+    {/*  <appLazyComponent/>*/}
+    {/*  <Appreactfragments/>*/}
+    {/*<App_workers/>*/}
+    {/*<App_useTransition/>*/}
       {/*<App_virtualization/>*/}
   </React.StrictMode>
 )

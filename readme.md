@@ -11,15 +11,32 @@ API Performance Tips -
 9.Code-splitting
 10.react fragments
 11.web workers
-12. useTransition hook
+12useTransition hook
 13. List Virtualization or Windowing
+
+-----------------------------------------------------------
+-----------------------------------------------------------
+
+! Pagination: Data Segmentation
+! Asynchronous Logging: Non-blocking Logging
+! Caching: Data Storage
+! Payload Compression: Data Optimization
+! Connection Pooling: Connection Reuse
+! Lazy Loading: Deferred Loading
+! Image Memoization: Image Caching
+! Throttling and Debouncing Events: Event Rate-limiting
+! Code-Splitting: JavaScript Chunking
+! React Fragments: DOM Grouping
+! Web Workers: Background Execution
+! useTransition Hook: Concurrent Rendering
+! List Virtualization or Windowing: Render Optimization
 
 -----------------------------------------------------------
 -----------------------------------------------------------
 
 git clone --depth 1 https://github.com/your-repo.git
 
-cd repo 
+cd repo
 
 for branch in $(git branch -r | grep -v '\->'); do
 git branch --track "${branch#origin/}" "$branch"
@@ -30,3 +47,6 @@ git pull --all
 
 -----------------------------------------------------------
 -----------------------------------------------------------
+
+
+
