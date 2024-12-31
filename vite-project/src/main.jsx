@@ -14,12 +14,13 @@ import App_workers from "./app-worker.jsx";
 import App_useTransition from "./useTransition.jsx";
 import App_virtualization from "./virtualization.jsx";
 import Pagination2 from "./test.jsx";
+import App_lazy from "./App_lazy.jsx";
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
       {/*<Pagination2/>*/}
     {/*<Pagination />*/}
     {/*  <AsyncLogger/>*/}
-      <CachingExample/>
+    {/*  <CachingExample/>*/}
       {/*<CompressionExample/>*/}
     {/*  <Lazy/>*/}
     {/*  <ImageMemoizationExample/>*/}
@@ -29,6 +30,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     {/*  <Appreactfragments/>*/}
     {/*<App_workers/>*/}
     {/*<App_useTransition/>*/}
-      {/*<App_virtualization/>*/}
+    {/*  <App_virtualization/>*/}
+      <App_lazy/>
   </React.StrictMode>
 )

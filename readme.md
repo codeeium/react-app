@@ -6,6 +6,13 @@
 
 ![img.png](img.png)
 
+
+![img_4.png](img_4.png)
+![img_5.png](img_5.png)
+![img_6.png](img_6.png)
+![img_7.png](img_7.png)
+
+
 * 1.Pagination
 * 2.Asynchronous logging
 * 3.Caching
@@ -70,3 +77,13 @@
 12. useTransition Hook: A React hook that allows managing concurrent tasks, providing smoother transitions in UI updates.
 13. List Virtualization or Windowing: Rendering only the visible items in a large list to improve performance by minimizing the number of DOM elements.
 
+---------
+* 
+* React.lazy: Dynamically imports components, splitting them into separate chunks.
+* Suspense: Displays a loading fallback until the lazily loaded component is ready.
+* React Router: Can be combined with React.lazy for route-based code splitting.
+* Webpack: Automatically handles the splitting of chunks when using dynamic imports.
+
+lazy-> suspense-> router-webpack
+
+![img_3.png](img_3.png)

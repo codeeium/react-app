@@ -2,7 +2,9 @@ import React from 'react';
 import { FixedSizeList as List } from 'react-window';
 
 // Sample data (A large list of items)
-const items = Array.from({ length: 1000 }, (_, index) => `Item ${index + 1}`);
+const items = Array.from(
+    { length: 1000 },
+    (_, index) => `Item ${index + 1}`);
 
 function App_virtualization() {
     // Render a row for each item in the list
