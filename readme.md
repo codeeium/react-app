@@ -1,4 +1,5 @@
 API Performance Tips -
+HRPM - Handling, Rendering, Processing and Management
 
 ![img_1.png](img_1.png)
 
