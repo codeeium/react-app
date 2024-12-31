@@ -3,7 +3,7 @@ import React, { Suspense, lazy, useState } from 'react';
 // Lazy load the component
 const LazyComponent =
 
-    lazy(() => import('./LazyComponent'));
+    lazy(() => import('./LazyComponent.jsx'));
 
 export default function App() {
   const [show, setShow] = useState(false);

@@ -4,7 +4,7 @@ import Pagination from './Pagination.jsx'
 import AsyncLogger from "./AsyncLogger.jsx";
 import CachingExample from "./Caching.jsx";
 import CompressionExample from "./CompressionExample.jsx";
-import Lazy from "./Lazy.jsx";
+import Lazy from "./lazy.jsx";
 import ImageMemoizationExample from "./ImageMemoizationExample.jsx";
 import App from "./throttle_debounce.jsx";
 import LazyComponent from "./LazyComponent.jsx";
@@ -12,7 +12,7 @@ import appLazyComponent from "./app-LazyComponent.jsx";
 import Appreactfragments from "./react-fragments.jsx"
 import App_workers from "./app-worker.jsx";
 import App_useTransition from "./useTransition.jsx";
-import App_virtualization from "./virtualization.jsx";
+import App_virtualization from "./Virtualization.jsx";
 import Pagination2 from "./test.jsx";
 import App_lazy from "./App_lazy.jsx";
 ReactDOM.createRoot(document.getElementById('root')).render(

@@ -4,7 +4,7 @@ import React, { useState, Suspense } from 'react';
 const FirstComponent =
     React.lazy(() => import('./FirstComponent.jsx'));
 const SecondComponent =
-    React.lazy(() => import('./SecondComponent'));
+    React.lazy(() => import('./SecondComponent.jsx'));
 
 const Lazy = () => {
     const [showFirst, setShowFirst] = useState(false);
