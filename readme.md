@@ -1,6 +1,7 @@
-**API Performance Tips -
-**HRPM - Handling, Rendering, Processing and Management
-**Or PRHM Or RPHM****
+* API Performance Tips -
+* HRPM - Handling, Rendering, Processing and Management
+* Or PRHM Or RPHM****
+* 
 ![img_1.png](img_1.png)
 
 ![img.png](img.png)
