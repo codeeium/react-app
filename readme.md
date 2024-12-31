@@ -1,5 +1,8 @@
 API Performance Tips -
 
+
+![img.png](img.png)
+
 * 1.Pagination
 * 2.Asynchronous logging
 * 3.Caching
