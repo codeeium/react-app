@@ -2,34 +2,33 @@
 const path = require('path');
 
 module.exports = {
-    entry: './src/main.jsx',  // The entry point to your React app
+    entry: './src/index.js',
     output: {
-        filename: 'bundle.js',  // The output bundle file
         path: path.resolve(__dirname, 'dist'),
+        filename: 'bundle.js',
     },
+    mode: 'development',
     module: {
         rules: [
             {
-                test: /\.jsx?$/,  // This will match .jsx and .js files
+                test: /\.js$/,
                 exclude: /node_modules/,
                 use: {
-                    loader: 'babel-loader',  // Use Babel to transpile JSX
+                    loader: 'babel-loader',
                     options: {
                         presets: ['@babel/preset-env', '@babel/preset-react'],
                     },
                 },
             },
             {
-                test: /\.css$/,  // This will match CSS files
+                test: /\.css$/,
                 use: ['style-loader', 'css-loader'],
             },
         ],
     },
-    resolve: {
-        extensions: ['.js', '.jsx'],  // Resolve .js and .jsx file extensions
-    },
     devServer: {
-        contentBase: path.join(__dirname, 'dist'),
-        port: 9000,
+        static: path.resolve(__dirname, 'dist'),
+        port: 3000,
+        open: true,
     },
 };
