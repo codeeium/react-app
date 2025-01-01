@@ -2,15 +2,15 @@
 * HRPM - Handling, Rendering, Processing and Management
 * Or PRHM Or RPHM****
 * 
-![img_1.png](img_1.png)
+![img_1.png](per-project/images/img_1.png)
 
-![img.png](img.png)
+![img.png](per-project/images/img.png)
 
 
-![img_4.png](img_4.png)
-![img_5.png](img_5.png)
-![img_6.png](img_6.png)
-![img_7.png](img_7.png)
+![img_4.png](per-project/images/img_4.png)
+![img_5.png](per-project/images/img_5.png)
+![img_6.png](per-project/images/img_6.png)
+![img_7.png](per-project/images/img_7.png)
 
 
 * 1.Pagination
@@ -88,4 +88,4 @@ lazy --> suspense --> webpack
 
 lazy-> suspense-> router-webpack
 
-![img_3.png](img_3.png)
+![img_3.png](per-project/images/img_3.png)
