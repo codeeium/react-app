@@ -7,7 +7,16 @@
 * npm install react react-dom
 * 
 * // 3. Install development dependencies
-* npm install --save-dev webpack webpack-cli webpack-dev-server @babel/core babel-loader @babel/preset-env @babel/preset-react style-loader css-loader
+* npm install --save-dev 
+* webpack 
+* webpack-cli 
+* webpack-dev-server 
+* @babel/core 
+* babel-loader 
+* @babel/preset-env 
+* @babel/preset-react 
+* style-loader 
+* css-loader
 * 
 * // 4. Create necessary folders and files
 * mkdir src dist
