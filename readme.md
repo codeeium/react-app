@@ -84,6 +84,8 @@
 * React Router: Can be combined with React.lazy for route-based code splitting.
 * Webpack: Automatically handles the splitting of chunks when using dynamic imports.
 
+lazy --> suspense --> webpack 
+
 lazy-> suspense-> router-webpack
 
 ![img_3.png](img_3.png)
