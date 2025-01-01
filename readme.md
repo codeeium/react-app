@@ -12,4 +12,5 @@
 * // 4. Create necessary folders and files
 * mkdir src dist
 * printf "<!DOCTYPE html>\n<html>\n<head>\n<title>React App</title>\n</head>\n<body>\n<div id='root'></div>\n</body>\n</html>" > dist/index.html
+* ![img.png](img.png)
 * 
