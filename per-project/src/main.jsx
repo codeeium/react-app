@@ -1,11 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from "./performance/App_lazy.jsx";
-import Listitem from "./Basic_Interview/Listitem.jsx";
-
+import UserProfile from "./PropDrilling/useState_propDrilling.jsx";
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-      <App/>
-      <Listitem/>
+    <UserProfile w/>
   </React.StrictMode>
 )
