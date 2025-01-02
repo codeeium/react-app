@@ -27,10 +27,26 @@ Here’s a list of commonly asked React.js interview questions categorized by di
 7. **What are components in React?**
 8. 
 8. **What is the difference between functional and class components?**
+
+![img_2.png](img_2.png)
+
+
 9. **Explain JSX. Why is it used?**
+10. 
 10. **What is the Virtual DOM, and how does it work?**
 11. **How do you create a component in React?**
+
+**Functional Component: Use a simple JavaScript function that returns JSX.**
+**Class Component: Use a class that extends React.Component and implements the render() method.**
+**Props: Pass data to components via props to make them dynamic.
+**State: Manage internal state within a component using useState (for functional components).**
+
 12. **What is state in React? How is it different from props?**
+
+Aspect	Props	State
+Purpose	Used to pass data from parent to child components.	
+Used to manage internal data and control component behavior.
+
 13. **Explain the concept of props in React.**
 14. **What is the significance of keys in React lists?**
 
@@ -39,7 +55,7 @@ Here’s a list of commonly asked React.js interview questions categorized by di
 ### **Intermediate Level**
 1. **How does React handle events differently from regular HTML?**
 2. **What is the use of `useState` and `useEffect` hooks?**
-3. **Explain the lifecycle methods of class components.**
+3. **Explain the lifecycle methods of class components.** (2nd Jan 2025)
 4. **What are controlled and uncontrolled components in React?**
 5. **What is prop drilling, and how can it be avoided?**
 6. **How does React Router work?**
@@ -72,3 +88,15 @@ Here’s a list of commonly asked React.js interview questions categorized by di
 5. **Create a custom hook for data fetching.**
 
 Would you like a deep dive into any specific question or code example?
+
+
+-----------
+
+
+Life cycle management in reactjs
+![img.png](img.png)
+
+Router:
+Define the path and render the path 
+![img_1.png](img_1.png)
+
