@@ -23,3 +23,11 @@ if(isAge >= isVotting){
 }else{
     console.log('Old enough to vote')
 }
+
+time = 20
+
+if(time<20){
+    console.log('Good day')
+}else{
+    console.log('Good evening')
+}

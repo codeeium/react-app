@@ -1,5 +1,3 @@
-
-
 firstName = 'John'
 print(firstName)
 
@@ -26,3 +24,15 @@ if(isAge == isVotting):
     print("Old enough to vote")
 else:
     print("Old enough to vote")
+if (20>30) :
+    print("20 is greater than 30")
+else:
+    print("30 is greater than 20")
+
+time = 20
+
+if(time < 20):
+    print("Good day")
+else:
+    print("Good evening")
+

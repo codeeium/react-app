@@ -19,8 +19,24 @@ console.log(isMarried)
 
 let isAge = 18
 let isVotting = 18
+
 if(isAge >= isVotting){
     console.log('Old enough to vote')
 }else{
     console.log('Old enough to vote')
+}
+
+if(20>30){
+    console.log('20 is greater than 30')
+}else{
+    console.log('30 is greater than 20')
+}
+
+type time = number
+
+let time:  time = 20
+if(time < 20){
+    console.log('Good day')
+}else{
+    console.log('Good evening')
 }
