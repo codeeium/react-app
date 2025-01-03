@@ -40,6 +40,57 @@ public class Main {
             System.out.println("20 is lesser than time");
         }
 
+        int weekday = 7;
+        switch (weekday) {
+            case 1:
+                System.out.println("Weekday: Monday");
+                break;
+            case 2:
+                System.out.println("Weekday: Tuesday");
+                break;
+            case 3:
+                System.out.println("Weekday: Wednesday");
+                break;
+            case 4:
+                System.out.println("Weekday: Thursday");
+                break;
+            case 5:
+                System.out.println("Weekday: Friday");
+                break;
+            case 6:
+                System.out.println("Weekday: Saturday");
+                break;
+            case 7:
+                System.out.println("Weekday: Sunday");
+                break;
+            default:
+        }
+
+        int i = 0;
+        while (i < 10) {
+            System.out.println(i + "-" + "countUp");
+            i = i + 1;
+        }
+
+        int countdown = 5;
+        while (countdown > 0) {
+            System.out.println(countdown + "-" + "countdown");
+            countdown--;
+        }
+
+        for (int forloop = 0; forloop < 10; forloop++) {
+            System.out.println(forloop + "..." + "forloop");
+        }
+
+        for (int forloop2 = 0; forloop2 < 5; forloop2++) {
+            System.out.println(forloop2 + "..." + "forloop2");
+        }
+
+        for (int in = 0; in < 3; in++) {
+            for (int j = 0; j < 3; j++) {
+                System.out.println(in + "-" + j);
+            }
+        }
     }
 }
 
