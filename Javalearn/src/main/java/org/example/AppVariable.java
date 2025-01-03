@@ -4,19 +4,29 @@ public class AppVariable {
 
     public static void main(String[] args) {
 
-        String firtName = "sam";
-        String lastName = "Naidu";
+        String firstName = "Jagan";
+        System.out.println("First Name: " + firstName);
 
-        int myNum = 5;
-        float myFloatNum = 5.99f;
-        char myLetter = 'D';
-        boolean myBool = true;
-        String myText = "Hello";
+        String name = "John Doe";
+        System.out.println(name);
+        int age = 20;
+        System.out.println(age);
+        age = 35;
+        System.out.println(age);
+        int myNum = 35;
+        System.out.println(myNum);
+        float myFloat = 35.5f;
+        char myChar = 'A';
+        System.out.println(myFloat);
+        System.out.println(myChar);
 
-        System.out.println(firtName+' ' + lastName);
-        System.out.println(myNum+' ' + myFloatNum);
-        System.out.println(myLetter +' ' + myText);
-        System.out.println(myBool );
+        // Good
+        int minutesPerHour = 60;
+        System.out.println(minutesPerHour);
+
+// OK, but not so easy to understand what m actually is
+        int m = 60;
+        System.out.println(m);
     }
 }
 
