@@ -135,3 +135,16 @@ print(returnVal(10))
 print(square(10))
 
 
+def addition(x, y):
+    return x + y
+print(addition(10, 20))
+print(addition(10.01, 20.02))
+
+def Recursive(k):
+    if k > 0:
+        result = k + Recursive(k - 1)
+        print(result)
+    else:
+        result = 0
+    return result
+Recursive(5)

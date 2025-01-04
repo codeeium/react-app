@@ -166,3 +166,24 @@ class Returnval{
 
 console.log(Returnval.myMethod(100))
 console.log(Returnval.square(100))
+
+
+type x5 = number
+type y5 = number
+class myadditon{
+    static addition(x: x5, y: y5){
+        return x + y
+    }
+}
+console.log(myadditon.addition(10,20), 'addition')
+console.log(myadditon.addition(10.01,20.03), 'float addition')
+
+type retype = number
+function recursive2(x:retype):retype   {
+    if (x > 0) {
+        return x + recursive2(x - 1)
+    } else {
+        return 0
+    }
+}
+console.log(recursive2(5))

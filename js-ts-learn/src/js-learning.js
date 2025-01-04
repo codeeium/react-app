@@ -167,3 +167,30 @@ class valReturn {
 }
 console.log(valReturn.square(100))
 console.log(valReturn.myMethod(100))
+
+
+function addition(x,y){
+    return x + y
+}
+console.log(addition(10,20), 'addition')
+console.log(addition(10.02,20.33), 'float addition')
+
+class returnval {
+    static addition(x,y){
+        return x + y
+}
+}
+console.log(returnval.addition(10,20), 'addition')
+console.log(returnval.addition(10.02,20.33), 'float addition')
+
+
+function Recursive(x){
+    if(x <= 0){
+        return 0
+    }else{
+        return x + Recursive(x - 1)
+    }
+}
+console.log(Recursive(5))
+
+
