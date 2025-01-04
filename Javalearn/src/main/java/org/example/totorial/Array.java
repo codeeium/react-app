@@ -1,4 +1,4 @@
-package org.example;
+package org.example.totorial;
 
 public class Array {
 

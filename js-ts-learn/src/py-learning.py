@@ -148,3 +148,17 @@ def Recursive(k):
         result = 0
     return result
 Recursive(5)
+
+
+# First Page – First Line
+# Second Page – 3rd and 5th Points
+# Ensure the dates are same
+
+
+class createClass:
+    def __init__(self, name):
+        self.name = name
+
+instance = createClass('Ramakrishna')
+
+print(instance.name)

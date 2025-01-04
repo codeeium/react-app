@@ -187,3 +187,20 @@ function recursive2(x:retype):retype   {
     }
 }
 console.log(recursive2(5))
+
+//
+
+type x10 = number
+
+class creatinine{
+    myMethod(x: x10){
+        return x + 5
+    }
+    square(x: x10){
+        return x * x
+    }
+}
+let obj:creatinine = new creatinine()
+
+console.log(obj.myMethod(100))
+console.log(obj.square(100))

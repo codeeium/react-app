@@ -1,4 +1,4 @@
-package org.example;
+package org.example.totorial;
 
 
 import java.util.Arrays;

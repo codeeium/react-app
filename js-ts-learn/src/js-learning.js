@@ -194,3 +194,15 @@ function Recursive(x){
 console.log(Recursive(5))
 
 
+class createinstane{
+     myMethod(x){
+        return x + 5
+    }
+     square(x){
+        return x * x
+    }
+}
+
+let createNewInstane = new createinstane()
+console.log(createNewInstane.square(100))
+console.log(createNewInstane.myMethod(100))

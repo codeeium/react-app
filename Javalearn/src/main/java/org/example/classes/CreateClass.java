@@ -1,10 +1,11 @@
-package org.example;
+package org.example.classes;
 
-public class MethodScope {
+public class CreateClass {
+
+    static int x = 100;
 
     public static void main(String[] args) {
-        int x = 10;
         System.out.println(x);
-
     }
+
 }
