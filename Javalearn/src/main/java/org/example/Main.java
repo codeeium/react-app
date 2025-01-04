@@ -91,8 +91,27 @@ public class Main {
                 System.out.println(in + "-" + j);
             }
         }
+
+        for (int k3 = 0; k3 < 15; k3 = k3 + 2) {
+            System.out.println(k3 + "-" + "k3");
+        }
+
+        for(int jint = 0; jint < 10; jint = jint + 2 ){
+            if(jint == 6) {
+                continue;
+            }
+            System.out.println(jint + "-" + "jint");
+        }
+
+        String[] cars = {"Volvo","BMW","Audi"};
+           System.out.println(cars[0]);
+           cars[0] = "Volvo 123";
+           System.out.println(cars[0]);
+
+
+        }
     }
-}
+
 
 
 

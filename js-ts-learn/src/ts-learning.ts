@@ -5,7 +5,7 @@ let firstName: firstName = 'John'
 console.log(firstName)
 
 type age = number
-let age: age= 18
+let age: age = 18
 console.log(age)
 
 let sal = 300
@@ -14,35 +14,35 @@ let sum = sal + (sal * interest)
 console.log(sum)
 
 type isMarried = boolean
-let isMarried:isMarried = true
+let isMarried: isMarried = true
 console.log(isMarried)
 
 let isAge = 18
 let isVotting = 18
 
-if(isAge >= isVotting){
+if (isAge >= isVotting) {
     console.log('Old enough to vote')
-}else{
+} else {
     console.log('Old enough to vote')
 }
 
-if(20>30){
+if (20 > 30) {
     console.log('20 is greater than 30')
-}else{
+} else {
     console.log('30 is greater than 20')
 }
 
 type time = number
 
-let time:  time = 20
-if(time < 20){
+let time: time = 20
+if (time < 20) {
     console.log('Good day')
-}else{
+} else {
     console.log('Good evening')
 }
 
 type weekday = number
-let weekday:weekday = 7
+let weekday: weekday = 7
 switch (weekday) {
     case 1:
         console.log('Monday')
@@ -71,25 +71,98 @@ switch (weekday) {
 }
 
 type coutup = number
-let coutup:coutup = 0
+let coutup: coutup = 0
 
-while(coutup<=5){
-    console.log(coutup+'...'+'coutup')
+while (coutup <= 5) {
+    console.log(coutup + '...' + 'coutup')
     coutup++
 }
 
 
 let countdown = 5
-while(countdown > 0){
-    console.log(countdown+'...'+'countdown')
+while (countdown > 0) {
+    console.log(countdown + '...' + 'countdown')
     countdown--
 }
 
 type i = number
 type j = number
 
-for(let i:i= 0; i<=5; i++){
-    for (let j:j = 0; j <= 5; j++) {
-        console.log(i,j)
+for (let i: i = 0; i <= 5; i++) {
+    for (let j: j = 0; j <= 5; j++) {
+        console.log(i, j)
     }
 }
+type i_count = number
+
+
+for (let i_count: i_count = 0; i_count <= 20; i_count++) {
+    if (i_count == 6) {
+        continue
+    }
+    console.log(i_count + '...' + 'i_count')
+}
+
+type cars = Array<string>
+let cars: cars = ['BMW', 'Mercedes', 'Audi']
+cars[0] = 'BMW 123'
+console.log(cars[0])
+
+let age2 = [1, 2, 3, 4, 5]
+let avg2, sum2 = 0
+
+type i2 = number
+
+for (let i: i2 = 0; i < age2.length; i++) {
+    sum2 = sum2 + age2[i]
+}
+
+avg2 = sum2 / age2.length
+console.log(sum2, age2.length, avg2)
+
+
+type age4 = Array<number>
+let age4: age4 = [20, 22, 18, 35, 48, 26, 87, 70];
+let minAge = age4[0]
+
+for(let i = 0; i < age4.length; i++){
+    if(age4[i] < minAge){
+        minAge = age4[i]
+    }
+}
+console.log(minAge,'minAge')
+
+type fname = string
+
+class myClass {
+    public static myMethod(fname: fname) {
+        console.log(fname + " :fname from myclass");
+    }
+}
+myClass.myMethod('Jagan')
+
+type age2 = number
+function myAge(age: age2) {
+    if (age >= 18) {
+        console.log('Old enough to vote');
+    } else {
+        console.log('Not Old enough to vote');
+    }
+}
+myAge(45)
+myAge(455)
+
+type x = number
+class Returnval{
+
+    static  myMethod(x: x){
+        return x + 5
+    }
+    static  square(x: x){
+        return x * x
+    }
+
+}
+
+console.log(Returnval.myMethod(100))
+console.log(Returnval.square(100))

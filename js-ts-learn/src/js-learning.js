@@ -77,3 +77,93 @@ for (let i=0;i<2;i++){
         console.log(i+'-'+j)
     }
 }
+
+for (let i_console=0; i_console<10; i_console= i_console + 2) {
+    console.log(i_console+'-'+'i_console')
+}
+
+for (let icount=0; icount<10; icount++){
+    if(icount == 6){
+        continue
+    }
+    console.log(icount+'-'+'icount')
+}
+
+let cars = ['BMW','Mercedes','Audi']
+cars[0] = 'BMW 123'
+console.log(cars[0]);
+
+
+let age2 = [1,2,3,4,5]
+let avg2,sum2 = 0
+
+for (let i = 0; i < age2.length; i++) {
+    sum2 = sum2 + age2[i]
+}
+avg2 = sum2 / age2.length
+console.log(sum2, age2.length, avg2)
+
+
+let age4 = [20, 22, 18, 35, 48, 26, 87, 70];
+let minAge = age4[0];
+
+for(let i = 0; i < age4.length; i++){
+    if(age4[i] < minAge){
+        minAge = age4[i];
+    }
+}
+console.log(minAge, 'minAge');
+
+
+class myClass {
+    static myMethod(fname) {
+        console.log(fname + " :fname");
+    }
+}
+myClass.myMethod('John')
+
+function myAge(age) {
+    if(age >= 18){
+        console.log('Old enough to vote');
+    }else{
+        console.log('Old enough to vote');
+    }
+}
+myAge(18)
+myAge(50)
+
+
+class myclassAge {
+    static myMethod(age) {
+        if(age >= 18){
+            console.log('Old enough to vote');
+        }else{
+            console.log('Old enough to vote');
+        }
+    }
+}
+myclassAge.myMethod(18)
+myclassAge.myMethod(50)
+
+class myclassAge2{
+    static myAge(age) {
+        if(age >= 18){
+            console.log('Old enough to vote');
+        }else{
+            console.log('Old enough to vote');
+        }
+    }
+}
+myclassAge2.myAge(55)
+
+
+class valReturn {
+    static myMethod(x){
+        return x + 5
+    }
+    static square(x){
+        return x * x
+    }
+}
+console.log(valReturn.square(100))
+console.log(valReturn.myMethod(100))

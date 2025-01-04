@@ -68,3 +68,70 @@ for i in range(5):
     for j in range(5):
         print(i, j)
 
+for countdown_range in range(0, 20, 2):
+    print(str(countdown_range) + '...' + 'countdown_range')
+
+for irange in range(10):
+    if (irange == 6):
+        continue
+    print(str(irange) + '...' + 'irange')
+
+cars = ["Ford", "Volvo", "BMW"]
+print(cars[0])
+cars[0] = "Ford 123"
+print(cars[0])
+
+age = [18, 20, 22, 24, 26, 28]
+print(age[0])
+sum = 0
+for i in range(len(age)):
+    print(age[i])
+    sum += age[i]
+print(sum, len(age))
+avg = sum / len(age)
+print(avg)
+
+
+age = [20, 22, 18, 35, 48, 26, 87, 70];
+minAge = age[0];
+for i in age:
+    if i < minAge:
+        minAge = i
+print(minAge,'minAge')
+
+
+myNumbers = [{1, 2, 3, 4}, {5, 6, 7}]
+for i in myNumbers:
+    print(i)
+
+
+
+def myMethod(fname):
+    print(fname + " :fname")
+def main():
+    myMethod("Jagan")
+
+if __name__ == '__main__':
+    main()
+# myMethod("Jagan")
+
+
+def myAge(age):
+    if age > 18:
+        print("Old enough to vote")
+    else:
+        print("Old enough to vote")
+myAge(10)
+myAge(20)
+myAge(40)
+myAge(50)
+
+
+def returnVal(x):
+    return x + 10
+def square(x):
+    return x * x
+print(returnVal(10))
+print(square(10))
+
+
