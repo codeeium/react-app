@@ -1,18 +1,19 @@
 export {}
 
-type name = string;
-type age = number;
-class Main {
-    name;
-    age;
-    constructor(name:name,age:age) {
-     this.name = name;
-     this.age = age;
-       }
-    info() {
-        return {name: this.name, age: this.age}
-    }
-}
+type Answer = string;
 
-const main = new Main('Ivan', 20)
-console.log(main.info())
+import readline from 'readline'; // Use import instead of require
+
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
+
+rl.question('What do you think of Node.js? ', (userAnswer: Answer) => {
+    console.log(`Thank you for your valuable feedback: ${userAnswer}`);
+    rl.close();
+});
+
+rl.on('close', () => {
+    process.exit(0); // Ensure the process exits after the readline interface is closed
+});

@@ -1,17 +1,17 @@
-class Main {
-    study() {
-        console.log('This need to be implemented')
-    }
-}
+// const readline = require('readline');
+import readline from 'readline';
 
-class Student extends Main {
-    study() {
-        console.log('I study')
-    }
-    name = 'John'
-    age = 33
-}
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
 
-const student = new Student()
-student.study()
-console.log(student.name +" - " + student.age)
+rl.question('What do you think of Node.js? ',
+    (answer) => {
+    console.log(`Thank you for your valuable feedback: ${answer}`);
+    rl.close();
+});
+
+rl.on('close', () => {
+    process.exit(0);
+});

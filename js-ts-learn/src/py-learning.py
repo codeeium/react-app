@@ -1,16 +1,8 @@
+def Main():
+    UserName = input("Please enter your name: ")
+    print("Hello   :", UserName)
 
-class info:
-    def __init__(self, name, age):
-        self.name = name
-        self.age = age
-
-    def print_info(self):
-        print(self.name, self.age)
-
-    def __str__(self):
-        return f"Name: {self.name}, Age: {self.age}"
+if __name__ == "__main__":
+    Main()
 
 
-person = info("John", 30)
-person.print_info()
-print(person)
