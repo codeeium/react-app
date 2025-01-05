@@ -1,0 +1,17 @@
+.birthday-container {
+  text-align: center;
+  background-color: #f0f8ff;
+  padding: 50px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  color: #ff6347;
+  font-size: 36px;
+}
+
+p {
+  color: #2e8b57;
+  font-size: 18px;
+}
