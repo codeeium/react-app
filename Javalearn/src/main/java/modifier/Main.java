@@ -5,9 +5,10 @@ import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
-        int[] myNum = {50, 10, 25, 1, 17, 99, 33};
-        Arrays.sort(myNum);
-        System.out.println(myNum);
+
+        double myDouble = 5.99d;
+        int myInt = (int) myDouble;
+        System.out.println(myInt);
 
     }
 }
