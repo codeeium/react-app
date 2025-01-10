@@ -1,22 +1,13 @@
 package modifier;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
+        int[] myNum = {50, 10, 25, 1, 17, 99, 33};
+        Arrays.sort(myNum);
+        System.out.println(myNum);
 
-        try {
-            File myObj = new File("sample.txt");
-            Scanner myReader = new Scanner(myObj);
-            while (myReader.hasNextLine()) {
-                String data = myReader.nextLine();
-                System.out.println(data);
-            }
-            myReader.close();
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        }
     }
 }
