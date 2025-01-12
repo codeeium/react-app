@@ -1,5 +1,0 @@
-# HTTrack Website Copier Cookie File
-# This file format is compatible with Netscape cookies
-vipkid.com	TRUE	/	FALSE	1999999999	AKA_A2	A
-www.vipkid.com	TRUE	/	FALSE	1999999999	SST_MESC	1736629645.240
-
