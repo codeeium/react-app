@@ -1,51 +1,70 @@
 require('dotenv').config();
-
 const Express = require('express');
-const MongoClient = require('mongodb').MongoClient;
+const { MongoClient } = require('mongodb');
 const cors = require('cors');
 const Multer = require('multer');
 
 const app = Express();
 app.use(cors());
+app.use(Express.json()); // Add JSON body parser middleware
 
-const CONNECTION_STRING = process.env.MONGO_URI
+const CONNECTION_STRING = process.env.MONGO_URI;
+const DATABASE_NAME = 'sales';
+const COLLECTION_NAME = 'sales';
 
-const DATABASE_NAME = 'salesdb';
-const COLLECTION_NAME = 'sales-cols';
-var database;
+let database;
 
-app.listen(5038, () => {
-    MongoClient.connect(CONNECTION_STRING,
-        (error, client) => {
+// Use async function to handle MongoDB connection
+async function connectToDatabase() {
+    try {
+        const client = await MongoClient.connect(CONNECTION_STRING, { useNewUrlParser: true, useUnifiedTopology: true });
         database = client.db(DATABASE_NAME);
-        console.log('Mongo DB successfully connected');
-    });
-})
+        console.log('MongoDB successfully connected');
+    } catch (error) {
+        console.error('Error connecting to MongoDB:', error);
+        process.exit(1); // Exit the application if the DB connection fails
+    }
+}
 
-app.get('/api/GetNotes', (request, response) => {
-    database.collection(COLLECTION_NAME).find().toArray()
-    .then((data) => {
-        response.send(data);
-    })
+app.listen(5038, async () => {
+    await connectToDatabase(); // Ensure DB is connected before starting the server
 });
 
-app.post('/api/AddNotes', Multer().none(), (request, response) => {
-    database.collection(COLLECTION_NAME).count({},function (err, numOfDocs) {
-        database.collection(COLLECTION_NAME).insertOne({
-            id: (numOfDocs + 1).toString(),
-            description: request.body.description
-            // name: request.body.name,
-            // price: request.body.price
-        })
+app.get('/api/GetNotes', async (request, response) => {
+    try {
+        const data = await database.collection(COLLECTION_NAME).find().toArray();
+        response.send(data);
+    } catch (error) {
+        response.status(500).send('Error fetching notes');
+    }
+});
+
+app.post('/api/AddNotes', Multer().none(), async (request, response) => {
+    try {
+        // You can use MongoDB's ObjectId for generating unique IDs instead of counting
+        const newNote = {
+            description: request.body.description,
+            createdAt: new Date() // Optional, to track when the note was added
+        };
+
+        const result = await database.collection(COLLECTION_NAME).insertOne(newNote);
         response.send('Added successfully');
+    } catch (error) {
+        response.status(500).send('Error adding note');
+    }
+});
 
-    })
-})
+app.delete('/api/DeleteNotes', async (request, response) => {
+    try {
+        const { id } = request.query;
+        const result = await database.collection(COLLECTION_NAME).deleteOne({ id: id });
 
-app.delete('/api/DeleteNotes',
-    (request, response) => {
-    database.collection(COLLECTION_NAME).deleteOne({
-        id: request.query.id
-    })
-    response.json('Deleted successfully');
-})
+        if (result.deletedCount === 0) {
+            response.status(404).send('Note not found');
+        } else {
+            response.json('Deleted successfully');
+        }
+    } catch (error) {
+        response.status(500).send('Error deleting note');
+    }
+});
