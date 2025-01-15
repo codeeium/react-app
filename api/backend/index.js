@@ -3,6 +3,7 @@ const Express = require('express');
 const { MongoClient } = require('mongodb');
 const cors = require('cors');
 const Multer = require('multer');
+const {response} = require("express");
 
 const app = Express();
 app.use(cors());
@@ -54,17 +55,35 @@ app.post('/api/AddNotes', Multer().none(), async (request, response) => {
     }
 });
 
-app.delete('/api/DeleteNotes', async (request, response) => {
-    try {
-        const { id } = request.query;
-        const result = await database.collection(COLLECTION_NAME).deleteOne({ id: id });
+// app.delete('/api/DeleteNotes',
+//     async (request, response) => {
+//     try {
+//         const { id } = request.query;
+//         const result = await database.collection(COLLECTION_NAME).deleteOne({ id: id });
+//
+//         if (result.deletedCount === 0) {
+//             response.status(404).send('Note not found');
+//         } else {
+//             response.json('Deleted successfully');
+//         }
+//     } catch (error) {
+//         response.status(500).send('Error deleting note');
+//     }
+// });
+app.delete('/api/DeleteNotes', async (req, res) => {
+    const { id } = req.query;
 
-        if (result.deletedCount === 0) {
-            response.status(404).send('Note not found');
-        } else {
-            response.json('Deleted successfully');
-        }
-    } catch (error) {
-        response.status(500).send('Error deleting note');
+    if (!id) {
+        return res.status(400).json({ error: 'ID is required' });
     }
+
+    const result = await database.collection(COLLECTION_NAME).deleteOne({ id });
+
+    if (result.deletedCount === 0) {
+        return res.status(404).json({ error: 'Note not found' });
+    }
+
+    res.json({ message: 'Deleted successfully' });
 });
+
+// console.log(await response.text());

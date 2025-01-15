@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import './App.css';
 
-
 class App extends Component {
 
     constructor(props) {
@@ -16,16 +15,30 @@ class App extends Component {
     API_URL = 'http://localhost:5038/'
 
     componentDidMount() {
-        this.refreshNotes();
+        this.refreshNotes().then(r =>
+            console.log(r));
     }
 
 
+    // async refreshNotes() {
+    //     fetch(this.API_URL + 'api/GetNotes')
+    //         .then(response => response.json())
+    //         .then(data => {
+    //             this.setState({notes: data});
+    //         })
+    // }
+
     async refreshNotes() {
-        fetch(this.API_URL + 'api/GetNotes')
-            .then(response => response.json())
-            .then(data => {
-                this.setState({notes: data});
-            })
+        try {
+            const response = await fetch(this.API_URL + 'api/GetNotes');
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const data = await response.json();
+            this.setState({ notes: data });
+        } catch (error) {
+            console.error("Error refreshing notes:", error);
+        }
     }
 
     async addClick() {
@@ -69,17 +82,44 @@ class App extends Component {
         }
     }
 
+
+    // async deleteClick(id) {
+    //
+    //
+    //     await fetch(this.API_URL + 'api/DeleteNotes?id=' + id, {
+    //         method: 'DELETE',
+    //     }).then(res=> res.json())
+    //         .then(result => {
+    //             alert(result)
+    //             this.refreshNotes();
+    //         })
+    //     this.refreshNotes()
+    // }
     async deleteClick(id) {
+        if (!id) {
+            alert('Invalid note ID');
+            return;
+        }
 
+        try {
+            const response = await fetch(`${this.API_URL}api/DeleteNotes?id=${id}`, {
+                method: 'DELETE',
+            });
 
-        await fetch(this.API_URL + 'api/DeleteNotes?id=' + id, {
-            method: 'DELETE',
-        }).then(res=> res.json())
-            .then(result => {
-                alert(result)
-                this.refreshNotes();
-            })
-        this.refreshNotes()
+            if (!response.ok) {
+                const errorData = await response.json();
+                alert(errorData.error || 'Failed to delete note');
+                return;
+            }
+
+            const result = await response.json();
+            console.log(await response.text());
+            alert(result.message || 'Deleted successfully');
+            await this.refreshNotes();
+        } catch (error) {
+            alert(`Error deleting note: ${error.message}`);
+        }
+
     }
 
     render() {
@@ -90,12 +130,21 @@ class App extends Component {
                 <input id="newNotes"/>&nbsp;
                 <button onClick={()=>this.addClick()}>Add Note</button>
 
-                {notes.map((note) => (<p key={note.id}>
+                {/*{notes.map((note) => (<p key={note.id}>*/}
+                {/*        <b>*** {note.description}</b>&nbsp;*/}
+                {/*        <button onClick={() => this.deleteClick(note.id)}>Delete Note</button>*/}
+                {/*    </p>))}*/}
+
+                {notes.map((note, index) => (
+                    <p key={note.id || index}>
                         <b>*** {note.description}</b>&nbsp;
                         <button onClick={() => this.deleteClick(note.id)}>Delete Note</button>
-                    </p>))}
+                    </p>
+                ))}
+                console.log(notes);
             </div>);
     }
+
 }
 
 
