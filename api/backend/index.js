@@ -1,13 +1,12 @@
 require('dotenv').config();
 const Express = require('express');
-const { MongoClient } = require('mongodb');
+const { MongoClient, ObjectId } = require('mongodb');
 const cors = require('cors');
 const Multer = require('multer');
-const {response} = require("express");
 
 const app = Express();
 app.use(cors());
-app.use(Express.json()); // Add JSON body parser middleware
+app.use(Express.json()); // JSON body parser middleware
 
 const CONNECTION_STRING = process.env.MONGO_URI;
 const DATABASE_NAME = 'sales';
@@ -34,7 +33,14 @@ app.listen(5038, async () => {
 app.get('/api/GetNotes', async (request, response) => {
     try {
         const data = await database.collection(COLLECTION_NAME).find().toArray();
-        response.send(data);
+
+        // Map _id to id for consistency
+        const notes = data.map(note => ({
+            ...note,
+            id: note._id
+        }));
+
+        response.json(notes);
     } catch (error) {
         response.status(500).send('Error fetching notes');
     }
@@ -42,34 +48,18 @@ app.get('/api/GetNotes', async (request, response) => {
 
 app.post('/api/AddNotes', Multer().none(), async (request, response) => {
     try {
-        // You can use MongoDB's ObjectId for generating unique IDs instead of counting
         const newNote = {
             description: request.body.description,
             createdAt: new Date() // Optional, to track when the note was added
         };
 
         const result = await database.collection(COLLECTION_NAME).insertOne(newNote);
-        response.send('Added successfully');
+        response.json({ message: 'Note added successfully', id: result.insertedId });
     } catch (error) {
         response.status(500).send('Error adding note');
     }
 });
 
-// app.delete('/api/DeleteNotes',
-//     async (request, response) => {
-//     try {
-//         const { id } = request.query;
-//         const result = await database.collection(COLLECTION_NAME).deleteOne({ id: id });
-//
-//         if (result.deletedCount === 0) {
-//             response.status(404).send('Note not found');
-//         } else {
-//             response.json('Deleted successfully');
-//         }
-//     } catch (error) {
-//         response.status(500).send('Error deleting note');
-//     }
-// });
 app.delete('/api/DeleteNotes', async (req, res) => {
     const { id } = req.query;
 
@@ -77,13 +67,15 @@ app.delete('/api/DeleteNotes', async (req, res) => {
         return res.status(400).json({ error: 'ID is required' });
     }
 
-    const result = await database.collection(COLLECTION_NAME).deleteOne({ id });
+    try {
+        const result = await database.collection(COLLECTION_NAME).deleteOne({ _id: new ObjectId(id) });
 
-    if (result.deletedCount === 0) {
-        return res.status(404).json({ error: 'Note not found' });
+        if (result.deletedCount === 0) {
+            return res.status(404).json({ error: 'Note not found' });
+        }
+
+        res.json({ message: 'Deleted successfully' });
+    } catch (error) {
+        res.status(500).json({ error: 'Error deleting note' });
     }
-
-    res.json({ message: 'Deleted successfully' });
 });
-
-// console.log(await response.text());
