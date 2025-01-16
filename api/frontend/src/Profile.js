@@ -18,7 +18,9 @@ const Profile = () => {
             try {
                 const response = await fetch('http://localhost:5038/api/profile', {
                     method: 'GET',
-                    headers: { Authorization: token },
+                    headers: {
+                        Authorization: `Bearer ${token}`, // Ensure the "Bearer " prefix
+                    },
                 });
 
                 if (!response.ok) {
@@ -28,21 +30,33 @@ const Profile = () => {
                 }
 
                 const result = await response.json();
-                setProfile(result);
+                setProfile(result); // Assuming API returns { username, profileImage }
             } catch (error) {
-                setMessage('Error fetching profile');
+                console.error('Error fetching profile:', error);
+                setMessage('An error occurred while fetching the profile.');
             }
         };
 
-        fetchProfile().then(r =>
-            console.log(r));
+        fetchProfile();
     }, [navigate]);
 
     return (
-        <div>
+        <div className="profile-container">
             <h2>Profile</h2>
             {message && <p>{message}</p>}
-            {profile && <p>Username: {profile.username}</p>}
+            {profile && (
+                <div className="profile-details">
+                    <div className="profile-header">
+                        <img
+                            src={profile.profileImage || 'https://via.placeholder.com/40'}
+                            alt={`${profile.username}'s profile`}
+                            className="profile-icon"
+                        />
+                        <p className="username">{profile.username}</p>
+                    </div>
+                    <p>Other user details can go here.</p>
+                </div>
+            )}
         </div>
     );
 };

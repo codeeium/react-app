@@ -55,7 +55,6 @@ async function connectToDatabase() {
 app.post('/api/register', async (req, res) => {
     const { username, password } = req.body;
 
-    // Basic validation
     if (!username || !password) {
         return res.status(400).json({ error: 'Username and password are required' });
     }
@@ -79,22 +78,19 @@ app.post('/api/register', async (req, res) => {
 
         // Insert the new user into the database
         const result = await database.collection(USERS_COLLECTION).insertOne(newUser);
-
-        // Return a success response
-        res.status(201).json({ message: 'User registered successfully', userId: result.insertedId });
+        return res.status(201).json({ message: 'User registered successfully', userId: result.insertedId });
     } catch (error) {
         logger.error('Error during registration:', error);
-        res.status(500).json({ error: 'An error occurred. Please try again later.' });
+        return res.status(500).json({ error: 'An error occurred while registering. Please try again later.' });
     }
 });
 
 
-app.post('/api/login',
-    async (req, res) => {
+
+app.post('/api/login', async (req, res) => {
     const { username, password } = req.body;
     try {
         const user = await database.collection(USERS_COLLECTION).findOne({ username });
-        console.log('User found:', user);  // Log user to ensure it's fetched
         if (!user) {
             logger.warn('Login failed: user not found');
             return res.status(401).json({ error: 'Invalid username or password' });
@@ -105,19 +101,15 @@ app.post('/api/login',
             return res.status(401).json({ error: 'Invalid username or password' });
         }
         const token = jwt.sign({ userId: user._id }, JWT_SECRET, { expiresIn: TOKEN_EXPIRY });
-        res.json({ message: 'Login successful', token });
+        logger.info('Login successful, token issued');
+        return res.json({ message: 'Login successful', token });
     } catch (error) {
         logger.error('Error during login:', error);
-        res.status(500).json({ error: 'An error occurred. Please try again later.' });
+        return res.status(500).json({ error: 'An error occurred while logging in. Please try again later.' });
     }
 });
 
-// Profile Endpoint
-// app.get('/api/profile', async (req, res) => {
-//     // Profile logic remains the same
-// });
 
-// Profile Endpoint
 app.get('/api/profile', async (req, res) => {
     const token = req.headers.authorization;
 
@@ -126,12 +118,11 @@ app.get('/api/profile', async (req, res) => {
         return res.status(401).json({ error: 'No token provided, please log in.' });
     }
 
-    // Log the token (for debugging purposes only, do not log sensitive information in production)
-    logger.info('Authorization header received:', token);
+    logger.info('Authorization header received:', token);  // Log the entire header for debugging
 
     try {
-        // Remove 'Bearer ' from the token (if it was included in the authorization header)
         const tokenWithoutBearer = token.split(' ')[1];
+
         if (!tokenWithoutBearer) {
             logger.warn('Token is missing after "Bearer"');
             return res.status(401).json({ error: 'Invalid token format. Must be "Bearer <token>"' });
@@ -140,10 +131,7 @@ app.get('/api/profile', async (req, res) => {
         // Verify the JWT token
         const decoded = jwt.verify(tokenWithoutBearer, JWT_SECRET);
 
-        // Extract the userId from the decoded token
         const userId = decoded.userId;
-
-        // Fetch the user's profile from the database
         const user = await database.collection(USERS_COLLECTION).findOne({ _id: ObjectId(userId) });
 
         if (!user) {
@@ -151,19 +139,17 @@ app.get('/api/profile', async (req, res) => {
             return res.status(404).json({ error: 'User not found' });
         }
 
-        // Return the user's profile (excluding password for security)
+        // Return the user's profile (excluding password)
         const { password, ...userProfile } = user;
-
         res.status(200).json(userProfile);
     } catch (error) {
         logger.error('Error during profile fetch:', error);
         res.status(500).json({
             error: 'An error occurred while fetching the profile. Please try again later.',
-            details: error.message,  // This will provide more information in the response
+            details: error.message,  // Provide additional details for debugging
         });
     }
 });
-
 
 
 // Start the Server

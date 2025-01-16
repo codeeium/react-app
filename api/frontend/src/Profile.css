@@ -1,0 +1,40 @@
+.profile-container {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.profile-details {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+}
+
+.profile-icon {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.username {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* Ensure the profile container aligns to the right */
+.profile-container {
+    position: initial;
+    top: 20px;
+    left: 20px;
+    width: 30px;  /* Adjust based on your design */
+    border: 10px solid #ccc;
+    padding: 150px;
+    background-color: #f9f9f9;
+}

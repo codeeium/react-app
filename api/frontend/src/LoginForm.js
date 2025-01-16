@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import loginform from './LoginForm.css';
 
 function Login() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const [success, setSuccess] = useState(false);
+    const [isLoggedIn, setIsLoggedIn] = useState(false); // Track login status
 
     const API_URL = 'http://localhost:5038/api/login';
 
@@ -12,8 +14,7 @@ function Login() {
         e.preventDefault();
 
         try {
-            const response = await
-                fetch('http://localhost:5038/api/login', {
+            const response = await fetch(API_URL, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -23,46 +24,64 @@ function Login() {
 
             if (!response.ok) {
                 const errorData = await response.json();
-                console.error('Login failed:', errorData);
-                alert(errorData.error || 'Login failed');
+                setError(errorData.error || 'Login failed');
+                setSuccess(false);
                 return;
             }
 
             const data = await response.json();
-            localStorage.setItem('token', data.token);
+            localStorage.setItem('token', data.token); // Save token in localStorage
+            setSuccess(true);
+            setError('');
+            setIsLoggedIn(true); // Mark user as logged in
             alert('Login successful!');
         } catch (error) {
             console.error('Login error:', error);
-            alert('An error occurred while logging in. Please try again.');
+            setError('An error occurred while logging in. Please try again.');
+            setSuccess(false);
         }
+    };
+
+    const handleLogout = () => {
+        localStorage.removeItem('token'); // Remove token from localStorage
+        setIsLoggedIn(false); // Update login state
+        setSuccess(false); // Reset success message
+        alert('You have been logged out.');
     };
 
     return (
         <div>
-            <h2>Login</h2>
-            <form onSubmit={handleSubmit}>
+            {!isLoggedIn ? (
                 <div>
-                    <label>Username:</label>
-                    <input
-                        type="text"
-                        value={username}
-                        onChange={(e) =>
-                            setUsername(e.target.value)}
-                    />
+                    <h2>Login</h2>
+                    <form onSubmit={handleSubmit}>
+                        <div>
+                            <label>Username:</label>
+                            <input
+                                type="text"
+                                value={username}
+                                onChange={(e) => setUsername(e.target.value)}
+                            />
+                        </div>
+                        <div>
+                            <label>Password:</label>
+                            <input
+                                type="password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                            />
+                        </div>
+                        <button type="submit">Login</button>
+                    </form>
+                    {error && <p style={{ color: 'red' }}>{error}</p>}
+                    {success && <p style={{ color: 'green' }}>Login successful!</p>}
                 </div>
+            ) : (
                 <div>
-                    <label>Password:</label>
-                    <input
-                        type="password"
-                        value={password}
-                        onChange={(e) =>
-                            setPassword(e.target.value)}
-                    />
+                    <h2>Welcome, {username}!</h2>
+                    <button onClick={handleLogout}>Logout</button>
                 </div>
-                <button type="submit">Login</button>
-            </form>
-            {error && <p style={{ color: 'red' }}>{error}</p>}
-            {success && <p style={{ color: 'green' }}>Login successful!</p>}
+            )}
         </div>
     );
 }
