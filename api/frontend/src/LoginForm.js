@@ -8,45 +8,12 @@ function Login() {
 
     const API_URL = 'http://localhost:5038/api/login';
 
-    // const handleSubmit = async (e) => {
-    //     e.preventDefault();
-    //     setError(''); // Reset error
-    //     setSuccess(false); // Reset success state
-    //
-    //     if (!username || !password) {
-    //         setError('Both fields are required');
-    //         return;
-    //     }
-    //
-    //     try {
-    //         const response = await fetch(API_URL, {
-    //             method: 'POST',
-    //             headers: {
-    //                 'Content-Type': 'application/json',
-    //             },
-    //             body: JSON.stringify({ username, password }),
-    //         });
-    //
-    //         if (!response.ok) {
-    //             const errorData = await response.json();
-    //             setError(errorData.error || 'Failed to log in');
-    //             return;
-    //         }
-    //
-    //         const data = await response.json();
-    //         localStorage.setItem('token', data.token); // Store JWT in localStorage
-    //         setSuccess(true);
-    //         alert('Login successful!');
-    //     } catch (error) {
-    //         console.error('Error during login:', error);
-    //         setError('An error occurred while logging in. Please try again.');
-    //     }
-    // };
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         try {
-            const response = await fetch('http://localhost:5038/api/login', {
+            const response = await
+                fetch('http://localhost:5038/api/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -56,6 +23,7 @@ function Login() {
 
             if (!response.ok) {
                 const errorData = await response.json();
+                console.error('Login failed:', errorData);
                 alert(errorData.error || 'Login failed');
                 return;
             }
@@ -78,7 +46,8 @@ function Login() {
                     <input
                         type="text"
                         value={username}
-                        onChange={(e) => setUsername(e.target.value)}
+                        onChange={(e) =>
+                            setUsername(e.target.value)}
                     />
                 </div>
                 <div>
@@ -86,7 +55,8 @@ function Login() {
                     <input
                         type="password"
                         value={password}
-                        onChange={(e) => setPassword(e.target.value)}
+                        onChange={(e) =>
+                            setPassword(e.target.value)}
                     />
                 </div>
                 <button type="submit">Login</button>
