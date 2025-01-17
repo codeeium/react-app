@@ -8,11 +8,11 @@
 }
 
 .profile-container {
-  position: inherit;
-  top: 20px;
-  left: 20px;
-  width: 250px; /* Adjust this to your needs */
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 2px; /* Adjust this to your needs */
   background-color: #afc1ed;
-  border: 1px solid #ccc;
+  border: 1px solid  #ccc;
   padding: 15px;
 }

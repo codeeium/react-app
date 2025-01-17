@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
 
 const Profile = () => {
     const [profile, setProfile] = useState(null);
@@ -33,8 +34,7 @@ const Profile = () => {
             setProfile(result);
         };
 
-        fetchProfile().then(r =>
-            console.log(r));
+        fetchProfile();
     }, [navigate]);
 
     useEffect(() => {
@@ -55,8 +55,7 @@ const Profile = () => {
             }
         };
 
-        fetchActivityLogs().then(r =>
-            console.log(r));
+        fetchActivityLogs();
     }, []);
 
     const handleLogout = () => {
@@ -66,26 +65,43 @@ const Profile = () => {
     };
 
     return (
-        <div className="profile-container">
-            <h2>Profile</h2>
-            {message && <p>{message}</p>}
+        <div className="container mt-5">
+            <h2 className="text-center mb-4">Profile</h2>
+            {message && <div className="alert alert-warning">{message}</div>}
+
             {profile && (
-                <div className="profile-details">
-                    <div className="profile-header">
-                        <img src={'/Users/developer1/WebstormProjects/react-app/api/frontend/public/logo192.png' || 'https://via.placeholder.com/40'} alt="Profile Icon" className="profile-icon" />
-                        <p className="username">{profile.username}</p>
+                <div className="card mb-4">
+                    <div className="card-header d-flex align-items-center">
+                        <img
+                            src={profile.avatar || 'https://via.placeholder.com/40'}
+                            alt="Profile Icon"
+                            className="rounded-circle me-3"
+                            style={{ width: '40px', height: '40px' }}
+                        />
+                        <h5 className="mb-0">{profile.username}</h5>
                     </div>
-                    <p>Other user details can go here.</p>
-                    <button onClick={handleLogout}>Logout</button>
+                    <div className="card-body">
+                        <p>Other user details can go here.</p>
+                        <button
+                            className="btn btn-danger"
+                            onClick={handleLogout}
+                        >
+                            Logout
+                        </button>
+                    </div>
                 </div>
             )}
+
             {activityLogs.length > 0 && (
-                <div className="activity-logs">
-                    <h3>Activity Logs</h3>
-                    <ul>
+                <div className="card">
+                    <div className="card-header">
+                        <h3 className="mb-0">Activity Logs</h3>
+                    </div>
+                    <ul className="list-group list-group-flush">
                         {activityLogs.map((log, index) => (
-                            <li key={index}>
-                                {log.message} - {new Date(log.timestamp).toLocaleString()}
+                            <li key={index} className="list-group-item">
+                                <strong>{log.message}</strong> -{' '}
+                                <small>{new Date(log.timestamp).toLocaleString()}</small>
                             </li>
                         ))}
                     </ul>
