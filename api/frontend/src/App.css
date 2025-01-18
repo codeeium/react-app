@@ -1,18 +1,37 @@
-.App {
+/*.App {*/
+/*  display: flex;*/
+/*  justify-content: left;*/
+/*}*/
+
+/*.nav {*/
+/*  flex: 1;*/
+/*}*/
+
+/*.profile-container {*/
+/*  position: absolute;*/
+/*  top: 2px;*/
+/*  left: 2px;*/
+/*  width: 2px; !* Adjust this to your needs *!*/
+/*  background-color: #afc1ed;*/
+/*  border: 1px solid  #ccc;*/
+/*  padding: 15px;*/
+/*}*/
+/* App.css */
+.bg-image {
+  background-image: url('/Users/developer1/WebstormProjects/react-app/api/frontend/public/FrontPage.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+}
+
+.login-bg {
+  background-image: url('/Users/developer1/WebstormProjects/react-app/api/frontend/public/FrontPage.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
   display: flex;
-  justify-content: left;
-}
-
-.nav {
-  flex: 1;
-}
-
-.profile-container {
-  position: absolute;
-  top: 2px;
-  left: 2px;
-  width: 2px; /* Adjust this to your needs */
-  background-color: #afc1ed;
-  border: 1px solid  #ccc;
-  padding: 15px;
+  align-items: center;
+  justify-content: center;
 }

@@ -1,3 +1,4 @@
+// Header Component
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -6,21 +7,20 @@ const Header = () => {
     const navigate = useNavigate();
 
     const handleLogout = () => {
-        localStorage.removeItem('token'); // Clear token
-        setIsLoggedIn(false); // Update login state
-        navigate('/login'); // Redirect to login page
+        localStorage.removeItem('token');
+        setIsLoggedIn(false);
+        navigate('/login');
     };
 
     return (
-        <div className="header-buttons">
-            {!isLoggedIn && (
+        <div className="d-flex justify-content-end">
+            {!isLoggedIn ? (
                 <>
-                    <button onClick={() => navigate('/login')}>Login</button>
-                    <button onClick={() => navigate('/register')}>Register</button>
+                    <button className="btn btn-outline-primary me-2" onClick={() => navigate('/login')}>Login</button>
+                    <button className="btn btn-outline-secondary" onClick={() => navigate('/register')}>Register</button>
                 </>
-            )}
-            {isLoggedIn && (
-                <button onClick={handleLogout}>Logout</button>
+            ) : (
+                <button className="btn btn-danger" onClick={handleLogout}>Logout</button>
             )}
         </div>
     );

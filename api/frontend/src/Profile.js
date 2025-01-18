@@ -8,6 +8,7 @@ const Profile = () => {
     const [activityLogs, setActivityLogs] = useState([]);
     const navigate = useNavigate();
 
+    // Fetch profile data
     useEffect(() => {
         const fetchProfile = async () => {
             const token = localStorage.getItem('token');
@@ -34,9 +35,11 @@ const Profile = () => {
             setProfile(result);
         };
 
-        fetchProfile();
+        fetchProfile().then(r =>
+            console.log(r));
     }, [navigate]);
 
+    // Fetch activity logs
     useEffect(() => {
         const fetchActivityLogs = async () => {
             const token = localStorage.getItem('token');
@@ -55,9 +58,11 @@ const Profile = () => {
             }
         };
 
-        fetchActivityLogs();
+        fetchActivityLogs().then(r =>
+            console.log(r));
     }, []);
 
+    // Handle logout
     const handleLogout = () => {
         localStorage.removeItem('token'); // Clear token from localStorage
         setProfile(null); // Clear profile information
@@ -69,31 +74,41 @@ const Profile = () => {
             <h2 className="text-center mb-4">Profile</h2>
             {message && <div className="alert alert-warning">{message}</div>}
 
+            {/* Profile Card */}
             {profile && (
-                <div className="card mb-4">
-                    <div className="card-header d-flex align-items-center">
-                        <img
-                            src={profile.avatar || 'https://via.placeholder.com/40'}
-                            alt="Profile Icon"
-                            className="rounded-circle me-3"
-                            style={{ width: '40px', height: '40px' }}
-                        />
-                        <h5 className="mb-0">{profile.username}</h5>
-                    </div>
-                    <div className="card-body">
-                        <p>Other user details can go here.</p>
-                        <button
-                            className="btn btn-danger"
-                            onClick={handleLogout}
-                        >
-                            Logout
-                        </button>
+                <div className="card mb-4 shadow">
+                    <div className="row g-0 align-items-center">
+                        <div className="col-md-4 text-center p-4">
+                            <img
+                                src={profile?.avatar && profile.avatar.trim() !== '' ? profile.avatar : 'https://avatar.iran.liara.run/public/boy?username=Ash'}
+                                // alt="Profile"
+                                alt=""
+                                className="img-fluid rounded-circle"
+                                style={{width: '150px', height: '150px', objectFit: 'cover'}}
+                            />
+                        </div>
+                        <div className="col-md-8">
+                            <div className="card-body">
+                                <h5 className="card-title">{profile.username}</h5>
+                                <p className="card-text">Email: {profile.email || 'Not provided'}</p>
+                                <p className="card-text">
+                                    <small className="text-muted">Joined: {new Date(profile.createdAt).toLocaleDateString()}</small>
+                                </p>
+                                <button
+                                    className="btn btn-danger"
+                                    onClick={handleLogout}
+                                >
+                                    Logout
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             )}
 
+            {/* Activity Logs */}
             {activityLogs.length > 0 && (
-                <div className="card">
+                <div className="card shadow">
                     <div className="card-header">
                         <h3 className="mb-0">Activity Logs</h3>
                     </div>
