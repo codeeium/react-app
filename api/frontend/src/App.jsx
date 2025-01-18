@@ -8,15 +8,19 @@ import './css/App.css';
 
 const App = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem('token')); // Track login state
+    const [loginMessage, setLoginMessage] = useState(''); // Track login success message
 
     const handleLoginSuccess = (token) => {
         localStorage.setItem('token', token); // Store token in localStorage
         setIsLoggedIn(true); // Update login state
+        setLoginMessage('Login Successful!'); // Set success message
+        setTimeout(() => {
+            setLoginMessage(''); // Clear the message after 3 seconds
+        }, 3000);
     };
 
     const handleLogout = () => {
         localStorage.removeItem('token'); // Remove token from localStorage
-        localStorage.removeItem('username'); // Remove username from localStorage
         setIsLoggedIn(false); // Update login state
     };
 
@@ -55,6 +59,9 @@ const App = () => {
                 </nav>
 
                 <div className="content">
+                    {loginMessage && (
+                        <div className="alert alert-success">{loginMessage}</div>
+                    )}
                     <Routes>
                         <Route path="/register" element={<RegistrationForm />} />
                         <Route

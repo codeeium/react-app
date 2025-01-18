@@ -10,8 +10,6 @@
             navigate('/login');
         };
 
-
-
         return <button onClick={handleLogout}>Logout</button>;
     }
 

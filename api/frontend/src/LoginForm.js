@@ -4,6 +4,7 @@ const LoginForm = ({ onLoginSuccess }) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem('token'));
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -20,10 +21,12 @@ const LoginForm = ({ onLoginSuccess }) => {
             }
 
             const data = await response.json();
-            // Store both token and username in localStorage
-            localStorage.setItem('token', data.token);
-            localStorage.setItem('username', username);  // Save the username
-            onLoginSuccess(data.token); // Notify parent of successful login
+            if (onLoginSuccess && typeof onLoginSuccess === 'function') {
+                onLoginSuccess(data.token); // Notify parent of successful login
+                setIsLoggedIn(true); // Update local state on successful login
+            } else {
+                console.error('onLoginSuccess is not defined or not a function');
+            }
         } catch (err) {
             setError(err.message);
         }
@@ -31,21 +34,29 @@ const LoginForm = ({ onLoginSuccess }) => {
 
     return (
         <div>
-            <form onSubmit={handleSubmit}>
-                <input
-                    type="text"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                    placeholder="Username"
-                />
-                <input
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    placeholder="Password"
-                />
-                <button type="submit">Login</button>
-            </form>
+            {isLoggedIn ? (
+                <div className="alert alert-success">Login Successful!</div>
+            ) : (
+                <form onSubmit={handleSubmit}>
+                    <input
+                        type="text"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                        placeholder="Username"
+                        required
+                    />
+                    <br />
+                    <input
+                        type="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        placeholder="Password"
+                        required
+                    />
+                    <br />
+                    <button type="submit">Login</button>
+                </form>
+            )}
             {error && <p>{error}</p>}
         </div>
     );
