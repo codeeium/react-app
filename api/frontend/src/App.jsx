@@ -16,6 +16,7 @@ const App = () => {
 
     const handleLogout = () => {
         localStorage.removeItem('token'); // Remove token from localStorage
+        localStorage.removeItem('username'); // Remove username from localStorage
         setIsLoggedIn(false); // Update login state
     };
 

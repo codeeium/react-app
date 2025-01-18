@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+
 const LoginForm = ({ onLoginSuccess }) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -19,11 +20,10 @@ const LoginForm = ({ onLoginSuccess }) => {
             }
 
             const data = await response.json();
-            if (onLoginSuccess && typeof onLoginSuccess === 'function') {
-                onLoginSuccess(data.token); // Notify parent of successful login
-            } else {
-                console.error('onLoginSuccess is not defined or not a function');
-            }
+            // Store both token and username in localStorage
+            localStorage.setItem('token', data.token);
+            localStorage.setItem('username', username);  // Save the username
+            onLoginSuccess(data.token); // Notify parent of successful login
         } catch (err) {
             setError(err.message);
         }

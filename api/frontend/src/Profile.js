@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
+import {useState} from "react";
+import {useNavigate} from "react-router-dom";
 
 const Profile = () => {
     const [profile, setProfile] = useState(null);
@@ -60,7 +59,7 @@ const Profile = () => {
         fetchActivityLogs();
     }, []);
 
-    // Handle logout
+    // Define the handleLogout function
     const handleLogout = () => {
         localStorage.removeItem('token'); // Clear token from localStorage
         setProfile(null); // Clear profile information
@@ -122,5 +121,6 @@ const Profile = () => {
         </div>
     );
 };
+
 
 export default Profile;
