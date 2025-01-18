@@ -4,8 +4,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import RegistrationForm from './RegistrationForm';
 import Profile from './Profile';
 import LoginForm from './LoginForm';
-import './App.css';
-// import React, { useState } from 'react';
+import './css/App.css';
+
 const App = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem('token')); // Track login state
 
