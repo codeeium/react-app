@@ -35,8 +35,7 @@ const Profile = () => {
             setProfile(result);
         };
 
-        fetchProfile().then(r =>
-            console.log(r));
+        fetchProfile();
     }, [navigate]);
 
     // Fetch activity logs
@@ -58,8 +57,7 @@ const Profile = () => {
             }
         };
 
-        fetchActivityLogs().then(r =>
-            console.log(r));
+        fetchActivityLogs();
     }, []);
 
     // Handle logout
@@ -81,8 +79,7 @@ const Profile = () => {
                         <div className="col-md-4 text-center p-4">
                             <img
                                 src={profile?.avatar && profile.avatar.trim() !== '' ? profile.avatar : 'https://avatar.iran.liara.run/public/boy?username=Ash'}
-                                // alt="Profile"
-                                alt=""
+                                alt="Profile"
                                 className="img-fluid rounded-circle"
                                 style={{width: '150px', height: '150px', objectFit: 'cover'}}
                             />
