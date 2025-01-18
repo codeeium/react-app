@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-
 const LoginForm = ({ onLoginSuccess }) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -8,18 +7,25 @@ const LoginForm = ({ onLoginSuccess }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // Simulating an API login call for this example
-        const response = await fetch('http://localhost:5038/api/login', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ username, password }),
-        });
+        try {
+            const response = await fetch('http://localhost:5038/api/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username, password }),
+            });
 
-        if (response.ok) {
+            if (!response.ok) {
+                throw new Error('Login failed');
+            }
+
             const data = await response.json();
-            onLoginSuccess(data.token); // Pass token to App for login success
-        } else {
-            setError('Login failed');
+            if (onLoginSuccess && typeof onLoginSuccess === 'function') {
+                onLoginSuccess(data.token); // Notify parent of successful login
+            } else {
+                console.error('onLoginSuccess is not defined or not a function');
+            }
+        } catch (err) {
+            setError(err.message);
         }
     };
 

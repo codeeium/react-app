@@ -1,14 +1,23 @@
-import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Routes, Link, useNavigate }
-    from 'react-router-dom';
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import RegistrationForm from './RegistrationForm';
 import Profile from './Profile';
 import LoginForm from './LoginForm';
 import './App.css';
-
+// import React, { useState } from 'react';
 const App = () => {
-    const token = localStorage.getItem('token');
+    const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem('token')); // Track login state
+
+    const handleLoginSuccess = (token) => {
+        localStorage.setItem('token', token); // Store token in localStorage
+        setIsLoggedIn(true); // Update login state
+    };
+
+    const handleLogout = () => {
+        localStorage.removeItem('token'); // Remove token from localStorage
+        setIsLoggedIn(false); // Update login state
+    };
 
     return (
         <Router>
@@ -18,12 +27,27 @@ const App = () => {
                         <Link className="navbar-brand" to="/">App</Link>
                         <div className="collapse navbar-collapse">
                             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                                <li className="nav-item">
-                                    <Link className="nav-link" to="/register">Register</Link>
-                                </li>
-                                <li className="nav-item">
-                                    <Link className="nav-link" to="/login">Login</Link>
-                                </li>
+                                {!isLoggedIn && (
+                                    <>
+                                        <li className="nav-item">
+                                            <Link className="nav-link" to="/register">Register</Link>
+                                        </li>
+                                        <li className="nav-item">
+                                            <Link className="nav-link" to="/login">Login</Link>
+                                        </li>
+                                    </>
+                                )}
+                                {isLoggedIn && (
+                                    <li className="nav-item">
+                                        <button
+                                            className="btn btn-link nav-link"
+                                            onClick={handleLogout}
+                                            style={{ cursor: 'pointer' }}
+                                        >
+                                            Logout
+                                        </button>
+                                    </li>
+                                )}
                             </ul>
                         </div>
                     </div>
@@ -32,12 +56,18 @@ const App = () => {
                 <div className="content">
                     <Routes>
                         <Route path="/register" element={<RegistrationForm />} />
-                        <Route path="/login" element={<LoginForm />} />
-                        <Route path="/profile" element={token ? <Profile /> : <LoginForm />} />
+                        <Route
+                            path="/login"
+                            element={<LoginForm onLoginSuccess={handleLoginSuccess} />}
+                        />
+                        <Route
+                            path="/profile"
+                            element={
+                                isLoggedIn ? <Profile /> : <LoginForm onLoginSuccess={handleLoginSuccess} />
+                            }
+                        />
                     </Routes>
                 </div>
-
-                {token && <Profile />}
             </div>
         </Router>
     );
