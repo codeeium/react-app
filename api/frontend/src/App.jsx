@@ -1,45 +1,20 @@
-
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link, Navigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import RegistrationForm from './RegistrationForm';
 import Profile from './Profile';
 import LoginForm from './LoginForm';
-<<<<<<< HEAD
-import Navbar from './my-app/src/components/Navbar.jsx';
-import Home from './my-app/src/pages/Home';
-=======
->>>>>>> refs/remotes/origin/mongo-api
+import Navbar from './my-app/src/components/Navbar'; // Adjusted path for Navbar
+import Home from './my-app/src/pages/Home'; // Adjusted path for Home
 import About from './my-app/src/pages/About';
 import Contact from './my-app/src/pages/Contact';
 import Help from './my-app/src/pages/Help';
 import Class from './my-app/src/pages/Class';
 import './css/App.css';
-import { Navigate } from 'react-router-dom';
-
-// Home Component with Navigation Links
-const Home = ({ routes }) => {
-    return (
-        <div>
-            <h1>Welcome to the App</h1>
-            <p>Select a page to navigate:</p>
-            <ul>
-                {routes.map((route, index) => (
-                    <li key={index}>
-                        <Link to={route.path}>{route.name}</Link>
-                    </li>
-                ))}
-            </ul>
-        </div>
-    );
-};
 
 const App = () => {
-    const [isLoggedIn, setIsLoggedIn] =
-        useState(!!localStorage.getItem('token')); // Track login state
-
-    const [loginMessage, setLoginMessage] = useState('');
-    // Track login success message
+    const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem('token')); // Track login state
+    const [loginMessage, setLoginMessage] = useState(''); // Track login success message
 
     const handleLoginSuccess = (token) => {
         localStorage.setItem('token', token); // Store token in localStorage
@@ -76,7 +51,7 @@ const App = () => {
                         <Link className="navbar-brand" to="/">App</Link>
                         <div className="collapse navbar-collapse">
                             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                                {!isLoggedIn && (
+                                {!isLoggedIn ? (
                                     <>
                                         <li className="nav-item">
                                             <Link className="nav-link" to="/register">Register</Link>
@@ -85,19 +60,16 @@ const App = () => {
                                             <Link className="nav-link" to="/login">Login</Link>
                                         </li>
                                     </>
-                                )}
-                                {isLoggedIn && (
-                                    <>
-                                        <li className="nav-item">
-                                            <button
-                                                className="btn btn-link nav-link"
-                                                onClick={handleLogout}
-                                                style={{ cursor: 'pointer' }}
-                                            >
-                                                Logout
-                                            </button>
-                                        </li>
-                                    </>
+                                ) : (
+                                    <li className="nav-item">
+                                        <button
+                                            className="btn btn-link nav-link"
+                                            onClick={handleLogout}
+                                            style={{ cursor: 'pointer' }}
+                                        >
+                                            Logout
+                                        </button>
+                                    </li>
                                 )}
                             </ul>
                         </div>
@@ -115,23 +87,10 @@ const App = () => {
                         {/* Registration and Login Routes */}
                         <Route path="/register" element={<RegistrationForm />} />
                         <Route path="/profile" element={isLoggedIn ? <Profile /> : <Navigate to="/login" />} />
-                        <Route
-                            path="/login"
-                            element={<LoginForm onLoginSuccess={handleLoginSuccess} />}
-                        />
-                        <Route
-                            path="/profile"
-                            element={
-                                isLoggedIn ? <Profile /> : <LoginForm onLoginSuccess={handleLoginSuccess} />
-                            }
-                        />
+                        <Route path="/login" element={<LoginForm onLoginSuccess={handleLoginSuccess} />} />
 
                         {/* Pages Routes */}
-<<<<<<< HEAD
-                        <Route path="/" element={<Home />} />
-=======
                         <Route path="/" element={<Home routes={routes} />} />
->>>>>>> refs/remotes/origin/mongo-api
                         <Route path="/class" element={<Class />} />
                         <Route path="/about" element={<About />} />
                         <Route path="/contact" element={<Contact />} />
