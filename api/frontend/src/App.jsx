@@ -5,14 +5,34 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import RegistrationForm from './RegistrationForm';
 import Profile from './Profile';
 import LoginForm from './LoginForm';
+<<<<<<< HEAD
 import Navbar from './my-app/src/components/Navbar.jsx';
 import Home from './my-app/src/pages/Home';
+=======
+>>>>>>> refs/remotes/origin/mongo-api
 import About from './my-app/src/pages/About';
 import Contact from './my-app/src/pages/Contact';
 import Help from './my-app/src/pages/Help';
 import Class from './my-app/src/pages/Class';
 import './css/App.css';
 import { Navigate } from 'react-router-dom';
+
+// Home Component with Navigation Links
+const Home = ({ routes }) => {
+    return (
+        <div>
+            <h1>Welcome to the App</h1>
+            <p>Select a page to navigate:</p>
+            <ul>
+                {routes.map((route, index) => (
+                    <li key={index}>
+                        <Link to={route.path}>{route.name}</Link>
+                    </li>
+                ))}
+            </ul>
+        </div>
+    );
+};
 
 const App = () => {
     const [isLoggedIn, setIsLoggedIn] =
@@ -35,6 +55,17 @@ const App = () => {
         localStorage.removeItem('token'); // Remove token from localStorage
         setIsLoggedIn(false); // Update login state
     };
+
+    const routes = [
+        { path: '/', name: 'Home' },
+        { path: '/class', name: 'Class' },
+        { path: '/about', name: 'About' },
+        { path: '/contact', name: 'Contact' },
+        { path: '/help', name: 'Help' },
+        { path: '/profile', name: 'Profile' },
+        { path: '/register', name: 'Register' },
+        { path: '/login', name: 'Login' },
+    ];
 
     return (
         <Router>
@@ -96,7 +127,11 @@ const App = () => {
                         />
 
                         {/* Pages Routes */}
+<<<<<<< HEAD
                         <Route path="/" element={<Home />} />
+=======
+                        <Route path="/" element={<Home routes={routes} />} />
+>>>>>>> refs/remotes/origin/mongo-api
                         <Route path="/class" element={<Class />} />
                         <Route path="/about" element={<About />} />
                         <Route path="/contact" element={<Contact />} />
