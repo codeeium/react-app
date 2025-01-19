@@ -24,6 +24,7 @@ const LoginForm = ({ onLoginSuccess }) => {
             if (onLoginSuccess && typeof onLoginSuccess === 'function') {
                 onLoginSuccess(data.token); // Notify parent of successful login
                 setIsLoggedIn(true); // Update local state on successful login
+                console.log("iskskdksksdk") // Update local state on successful login
             } else {
                 console.error('onLoginSuccess is not defined or not a function');
             }
