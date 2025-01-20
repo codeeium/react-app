@@ -1,9 +1,0 @@
-img {
-  display: block; /* Ensures images don’t have inline spacing */
-  width: 100%; /* Makes the image responsive */
-  max-width: 1200px; /* Limits the size */
-  height: auto; /* Maintains aspect ratio */
-  border-radius: 10px; /* Adds rounded corners (optional) */
-  margin: 0 auto; /* Centers the image */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow (optional) */
-}
