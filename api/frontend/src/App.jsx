@@ -8,6 +8,7 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 import Profile from './pages/Profile';
 import LoginForm from './pages/LoginForm';
+import Help from './pages/Help';
 import RegistrationForm from './pages/RegistrationForm';
 
 import './App.css';
@@ -35,37 +36,60 @@ const App = () => {
 
     return (
         <Router>
-            <div className="container mt-4">
-                <Navbar isAuthenticated={isLoggedIn} setIsAuthenticated={setIsLoggedIn} />
-                {loginMessage && <div className="alert alert-success">{loginMessage}</div>}
+            <div>
+                {/* Navigation Bar */}
+                <nav className="navbar navbar-expand-lg navbar-light bg-light">
+                    <div className="container-fluid">
+                        <div className="navbar-nav me-auto">
+                            {/* Left Side Links */}
+                            <Link to="/" className="nav-link">Home</Link>
+                            <Link to="/about" className="nav-link">About</Link>
+                            <Link to="/contact" className="nav-link">Contact</Link>
+                            <Link to="/help" className="nav-link">Help</Link>
+                        </div>
 
-                {isLoggedIn ? (
-                    <>
-                        {/* Navigation Links */}
-                        <nav className="mb-3">
-                            <Link to="/" className="btn btn-link">Home</Link>
-                            <Link to="/about" className="btn btn-link">About</Link>
-                            <Link to="/contact" className="btn btn-link">Contact</Link>
-                            <Link to="/profile" className="btn btn-link">Profile</Link>
-                            <button className="btn btn-danger" onClick={handleLogout}>Logout</button>
-                        </nav>
+                        <div className="navbar-nav ms-auto">
+                            {/* Right Side Links */}
+                            {isLoggedIn ? (
+                                <>
+                                    <Link to="/profile" className="nav-link">Profile</Link>
+                                    <button className="btn btn-danger" onClick={handleLogout}>
+                                        Logout
+                                    </button>
+                                </>
+                            ) : (
+                                <>
+                                    <Link to="/login" className="nav-link">Login</Link>
+                                    <Link to="/register" className="nav-link">Register</Link>
+                                </>
+                            )}
+                        </div>
+                    </div>
+                </nav>
 
-                        {/* Routes */}
-                        <Routes>
-                            <Route path="/" element={<Home />} />
-                            <Route path="/about" element={<About />} />
-                            <Route path="/contact" element={<Contact />} />
-                            <Route path="/profile" element={<Profile />} />
-                            <Route path="*" element={<Navigate to="/" />} />
-                        </Routes>
-                    </>
-                ) : (
+                {/* Main Content */}
+                <div className="container mt-4">
+                    {loginMessage && <div className="alert alert-success">{loginMessage}</div>}
+
                     <Routes>
-                        <Route path="/login" element={<LoginForm onLoginSuccess={handleLoginSuccess} />} />
-                        <Route path="/register" element={<RegistrationForm />} />
-                        <Route path="*" element={<Navigate to="/login" />} />
+                        <Route path="/" element={<Home />} />
+                        <Route path="/about" element={<About />} />
+                        <Route path="/contact" element={<Contact />} />
+                        <Route path="/help" element={<Help />} />
+                        {isLoggedIn ? (
+                            <>
+                                <Route path="/profile" element={<Profile />} />
+                                <Route path="*" element={<Navigate to="/" />} />
+                            </>
+                        ) : (
+                            <>
+                                <Route path="/login" element={<LoginForm onLoginSuccess={handleLoginSuccess} />} />
+                                <Route path="/register" element={<RegistrationForm />} />
+                                <Route path="*" element={<Navigate to="/login" />} />
+                            </>
+                        )}
                     </Routes>
-                )}
+                </div>
             </div>
         </Router>
     );
