@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link, Navigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import About from './pages/About';
 import Contact from './pages/Contact';
@@ -40,16 +39,18 @@ const App = () => {
                 {/* Navigation Bar */}
                 <nav className="navbar navbar-expand-lg navbar-light bg-light">
                     <div className="container-fluid">
-                        <div className="navbar-nav me-auto">
-                            {/* Left Side Links */}
-                            <Link to="/" className="nav-link">Home</Link>
-                            <Link to="/about" className="nav-link">About</Link>
-                            <Link to="/contact" className="nav-link">Contact</Link>
-                            <Link to="/help" className="nav-link">Help</Link>
-                        </div>
+                        {/* Links visible after login */}
+                        {isLoggedIn && (
+                            <div className="navbar-nav me-auto">
+                                <Link to="/" className="nav-link">Home</Link>
+                                <Link to="/about" className="nav-link">About</Link>
+                                <Link to="/contact" className="nav-link">Contact</Link>
+                                <Link to="/help" className="nav-link">Help</Link>
+                            </div>
+                        )}
 
+                        {/* Links on the right */}
                         <div className="navbar-nav ms-auto">
-                            {/* Right Side Links */}
                             {isLoggedIn ? (
                                 <>
                                     <Link to="/profile" className="nav-link">Profile</Link>
@@ -72,12 +73,12 @@ const App = () => {
                     {loginMessage && <div className="alert alert-success">{loginMessage}</div>}
 
                     <Routes>
-                        <Route path="/" element={<Home />} />
-                        <Route path="/about" element={<About />} />
-                        <Route path="/contact" element={<Contact />} />
-                        <Route path="/help" element={<Help />} />
                         {isLoggedIn ? (
                             <>
+                                <Route path="/" element={<Home />} />
+                                <Route path="/about" element={<About />} />
+                                <Route path="/contact" element={<Contact />} />
+                                <Route path="/help" element={<Help />} />
                                 <Route path="/profile" element={<Profile />} />
                                 <Route path="*" element={<Navigate to="/" />} />
                             </>
