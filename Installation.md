@@ -11,7 +11,7 @@ npm install express –save
 npm install cors --save
 npm install mongodb@4.1.0 --save
 npm install multer –save 
-node index.js
+node index.jsx
 
 ![img_2.png](img_2.png)
 

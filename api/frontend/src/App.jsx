@@ -1,81 +1,71 @@
-import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, Link, Navigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import RegistrationForm from './RegistrationForm';
-import Profile from './Profile';
-import LoginForm from './LoginForm';
-import './css/App.css';
+
+import Navbar from './components/Navbar';
+import Home from './pages/Home';
+import About from './pages/About';
+import Contact from './pages/Contact';
+import Profile from './pages/Profile';
+import LoginForm from './pages/LoginForm';
+import RegistrationForm from './pages/RegistrationForm';
+
+import './App.css';
 
 const App = () => {
-    const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem('token')); // Track login state
-    const [loginMessage, setLoginMessage] = useState(''); // Track login success message
+    const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem('token'));
+    const [loginMessage, setLoginMessage] = useState('');
+
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        setIsLoggedIn(!!token);
+    }, []);
 
     const handleLoginSuccess = (token) => {
-        localStorage.setItem('token', token); // Store token in localStorage
-        setIsLoggedIn(true); // Update login state
-        setLoginMessage('Login Successful!'); // Set success message
-        setTimeout(() => {
-            setLoginMessage(''); // Clear the message after 3 seconds
-        }, 3000);
+        localStorage.setItem('token', token);
+        setIsLoggedIn(true);
+        setLoginMessage('Login Successful!');
+        setTimeout(() => setLoginMessage(''), 3000);
     };
 
     const handleLogout = () => {
-        localStorage.removeItem('token'); // Remove token from localStorage
-        setIsLoggedIn(false); // Update login state
+        localStorage.removeItem('token');
+        setIsLoggedIn(false);
     };
 
     return (
         <Router>
             <div className="container mt-4">
-                <nav className="navbar navbar-expand-lg navbar-light bg-light mb-4">
-                    <div className="container-fluid">
-                        <Link className="navbar-brand" to="/">App</Link>
-                        <div className="collapse navbar-collapse">
-                            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                                {!isLoggedIn && (
-                                    <>
-                                        <li className="nav-item">
-                                            <Link className="nav-link" to="/register">Register</Link>
-                                        </li>
-                                        <li className="nav-item">
-                                            <Link className="nav-link" to="/login">Login</Link>
-                                        </li>
-                                    </>
-                                )}
-                                {isLoggedIn && (
-                                    <li className="nav-item">
-                                        <button
-                                            className="btn btn-link nav-link"
-                                            onClick={handleLogout}
-                                            style={{ cursor: 'pointer' }}
-                                        >
-                                            Logout
-                                        </button>
-                                    </li>
-                                )}
-                            </ul>
-                        </div>
-                    </div>
-                </nav>
+                <Navbar isAuthenticated={isLoggedIn} setIsAuthenticated={setIsLoggedIn} />
+                {loginMessage && <div className="alert alert-success">{loginMessage}</div>}
 
-                <div className="content">
-                    {loginMessage && (
-                        <div className="alert alert-success">{loginMessage}</div>
-                    )}
+                {isLoggedIn ? (
+                    <>
+                        {/* Navigation Links */}
+                        <nav className="mb-3">
+                            <Link to="/" className="btn btn-link">Home</Link>
+                            <Link to="/about" className="btn btn-link">About</Link>
+                            <Link to="/contact" className="btn btn-link">Contact</Link>
+                            <Link to="/profile" className="btn btn-link">Profile</Link>
+                            <button className="btn btn-danger" onClick={handleLogout}>Logout</button>
+                        </nav>
+
+                        {/* Routes */}
+                        <Routes>
+                            <Route path="/" element={<Home />} />
+                            <Route path="/about" element={<About />} />
+                            <Route path="/contact" element={<Contact />} />
+                            <Route path="/profile" element={<Profile />} />
+                            <Route path="*" element={<Navigate to="/" />} />
+                        </Routes>
+                    </>
+                ) : (
                     <Routes>
+                        <Route path="/login" element={<LoginForm onLoginSuccess={handleLoginSuccess} />} />
                         <Route path="/register" element={<RegistrationForm />} />
-                        <Route
-                            path="/login"
-                            element={<LoginForm onLoginSuccess={handleLoginSuccess} />}
-                        />
-                        <Route
-                            path="/profile"
-                            element={
-                                isLoggedIn ? <Profile /> : <LoginForm onLoginSuccess={handleLoginSuccess} />
-                            }
-                        />
+                        <Route path="*" element={<Navigate to="/login" />} />
                     </Routes>
-                </div>
+                )}
             </div>
         </Router>
     );

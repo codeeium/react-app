@@ -9,11 +9,11 @@
 
 .login-bg {
   background-image: url('/Users/developer1/WebstormProjects/react-app/api/frontend/public/FrontPage1.jpeg');
-  background-size: cover;
+  background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  min-height: 100vh;
-  display: flex;
+  min-height: max-content;
+  display: flow-root;
   align-items: center;
   justify-content: center;
 }

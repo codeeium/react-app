@@ -1,0 +1,12 @@
+"scripts": {
+"dev": "vite",
+"build": "vite build",
+"preview": "vite preview"
+},
+
+"scripts": {
+"start": "react-scripts start",
+"build": "react-scripts build",
+"test": "react-scripts test",
+"eject": "react-scripts eject"
+},
