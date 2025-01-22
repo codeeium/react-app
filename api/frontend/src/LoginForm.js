@@ -10,7 +10,7 @@ const LoginForm = ({ onLoginSuccess }) => {
         e.preventDefault();
 
         try {
-            const response = await fetch('http://localhost:5038/api/login', {
+            const response = await fetch('http://35.177.210.246:5038/api/login', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ username, password }),
