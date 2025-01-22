@@ -12,7 +12,7 @@
     "web-vitals": "^4.2.4"
   },
   "scripts": {
-    "start": "HOST=35.177.210.246 react-scripts start --openssl-legacy-provider",
+    "start": "HOST=0.0.0.0 react-scripts start --openssl-legacy-provider",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

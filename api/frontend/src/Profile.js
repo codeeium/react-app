@@ -18,7 +18,7 @@ const Profile = () => {
                 return;
             }
 
-            const response = await fetch('http://35.177.210.246:5038/api/profile', {
+            const response = await fetch('http://0.0.0.0:5038/api/profile', {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${token}`,
@@ -44,7 +44,7 @@ const Profile = () => {
             const token = localStorage.getItem('token');
             if (!token) return;
 
-            const response = await fetch('http://35.177.210.246:5038/api/activity-logs', {
+            const response = await fetch('http://0.0.0.0:5038/api/activity-logs', {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${token}`,
