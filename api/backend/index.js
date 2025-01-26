@@ -14,7 +14,11 @@ const app = express();
 // app.use(cors());
 
 app.use(express.json());
-app.use(cors({ origin: process.env.ALLOWED_ORIGINS.split(',') }));
+// app.use(cors({ origin: process.env.ALLOWED_ORIGINS.split(',') }));
+
+app.use(cors({
+    origin: ['http://cosmic-kids.zapto.org', 'http://localhost:3000']
+}));
 
 // Logger Configuration
 const logger = winston.createLogger({
@@ -160,7 +164,7 @@ app.get('/api/profile', async (req, res) => {
 // Start the Server
 const PORT = process.env.PORT || 5038;
 connectToDatabase().then(() => {
-    app.listen(5038, '0.0.0.0', () => {
+    app.listen(5038, () => {
         console.log('Server running on port 5038');
     });
 });
