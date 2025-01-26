@@ -10,6 +10,7 @@ const LoginForm = ({ onLoginSuccess }) => {
         e.preventDefault();
 
         try {
+            // const response = await fetch('http://0.0.0.0:5038/api/login', {
             const response = await fetch('http://0.0.0.0:5038/api/login', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
