@@ -8,6 +8,9 @@ const winston = require('winston');
 
 const app = express();
 
+// const cors = require('cors');
+app.use(cors());
+
 app.use(express.json());
 app.use(cors({ origin: process.env.ALLOWED_ORIGINS.split(',') }));
 
