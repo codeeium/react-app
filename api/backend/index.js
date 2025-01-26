@@ -1,5 +1,4 @@
 require('dotenv').config();
-// import reportWebVitals from './reportWebVitals';
 
 const express = require('express');
 const { MongoClient, ObjectId } = require('mongodb');
@@ -12,7 +11,7 @@ const app = express();
 
 
 // const cors = require('cors');
-app.use(cors());
+// app.use(cors());
 
 app.use(express.json());
 app.use(cors({ origin: process.env.ALLOWED_ORIGINS.split(',') }));
