@@ -160,7 +160,7 @@ app.get('/api/profile', async (req, res) => {
 // Start the Server
 const PORT = process.env.PORT || 5038;
 connectToDatabase().then(() => {
-    app.listen(5038, "cosmic-kids.zapto.org", () => {
+    app.listen(5038, '0.0.0.0', () => {
         console.log('Server running on port 5038');
     });
 });
