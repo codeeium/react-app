@@ -14,11 +14,11 @@ const app = express();
 // app.use(cors());
 
 app.use(express.json());
-// app.use(cors({ origin: process.env.ALLOWED_ORIGINS.split(',') }));
+app.use(cors({ origin: process.env.ALLOWED_ORIGINS.split(',') }));
 
-app.use(cors({
-    origin: ['http://cosmic-kids.zapto.org', 'http://localhost:3000']
-}));
+// app.use(cors({
+//     origin: ['http://cosmic-kids.zapto.org', 'http://localhost:3000']
+// }));
 
 // Logger Configuration
 const logger = winston.createLogger({
