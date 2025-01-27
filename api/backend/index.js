@@ -13,7 +13,7 @@ const app = express();
 app.use(express.json());
 
 // Ensure ALLOWED_ORIGINS is configured correctly in your .env
-const allowedOrigins = process.env.ALLOWED_ORIGINS ? process.env.ALLOWED_ORIGINS.split(',') : ['http://localhost:3000'];
+const allowedOrigins = process.env.ALLOWED_ORIGINS ? process.env.ALLOWED_ORIGINS.split(',') : ['http://13.42.26.150:3000'];
 app.use(cors({ origin: allowedOrigins }));
 
 // Logger Configuration
