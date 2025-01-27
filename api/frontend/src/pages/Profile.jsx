@@ -9,7 +9,7 @@ const Profile = () => {
     const [loadingProfile, setLoadingProfile] = useState(true);
     const [loadingLogs, setLoadingLogs] = useState(true);
     const navigate = useNavigate();
-
+    const API_BASE_URL = process.env.REACT_APP_API_BASE_URL||'http://localhost:5038';
     // Fetch profile data
     useEffect(() => {
         const fetchProfile = async () => {
@@ -21,7 +21,7 @@ const Profile = () => {
                     return;
                 }
 
-                const response = await fetch('http://localhost:5038/api/profile', {
+                const response = await fetch(`${API_BASE_URL}/api/profile`, {
                     method: 'GET',
                     headers: {
                         'Authorization': `Bearer ${token}`,
@@ -45,7 +45,13 @@ const Profile = () => {
             }
         };
 
-        fetchProfile();
+        fetchProfile().catch(
+            (error) => {
+                console.error('Network or other error while fetching profile:', error);
+                setMessage('Failed to fetch profile');
+                setLoadingProfile(false); // Stop loading even on error
+            }
+        );
     }, [navigate]);
 
     // Fetch activity logs
@@ -55,7 +61,7 @@ const Profile = () => {
                 const token = localStorage.getItem('token');
                 if (!token) return;
 
-                const response = await fetch('http://localhost:5038/api/activity-logs', {
+                const response = await fetch(`${API_BASE_URL}/api/activity-logs`, {
                     method: 'GET',
                     headers: {
                         'Authorization': `Bearer ${token}`,
@@ -78,7 +84,13 @@ const Profile = () => {
             }
         };
 
-        fetchActivityLogs();
+        fetchActivityLogs().then(
+            () => {},
+            (error) => {
+                console.error('Network or other error while fetching activity logs:', error);
+                setLoadingLogs(false); // Stop loading even on error
+            }
+        );
     }, []);
 
     // Handle logout
