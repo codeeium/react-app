@@ -9,7 +9,7 @@ const Profile = () => {
     const [loadingProfile, setLoadingProfile] = useState(true);
     const [loadingLogs, setLoadingLogs] = useState(true);
     const navigate = useNavigate();
-    const API_BASE_URL = process.env.REACT_APP_API_BASE_URL||'http://localhost:5038';
+    const API_BASE_URL = process.env.REACT_APP_API_BASE_URL||'http://13.42.26.150:5038';
     // Fetch profile data
     useEffect(() => {
         const fetchProfile = async () => {

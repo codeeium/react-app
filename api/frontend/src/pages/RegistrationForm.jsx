@@ -4,7 +4,7 @@ const RegistrationForm = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [message, setMessage] = useState('');
-    const API_BASE_URL = process.env.REACT_APP_API_BASE_URL||'http://localhost:5038';
+    const API_BASE_URL = process.env.REACT_APP_API_BASE_URL||'http://13.42.26.150:5038';
 
     const handleRegistration = async () => {
         try {
