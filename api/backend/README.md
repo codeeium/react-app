@@ -22,3 +22,9 @@ curl -X POST http://localhost:3000/api/profile -H "Content-Type: application/jso
 
 
 http://localhost:5038/api/register
+
+
+ssh -i "26-Jan-2025-pem-key-pair.pem" ec2-user@ec2-13-42-26-150.eu-west-2.compute.amazonaws.com
+
+ssh -i "26-Jan-2025-pem-key-pair.pem" ec2-user@ec2-13-42-26-150.eu-west-2.compute.amazonaws.com
+
