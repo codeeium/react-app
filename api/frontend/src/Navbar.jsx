@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Logout from './Logout';
+import Logout from './pages/Logout';
 
 function Navbar({ isAuthenticated, setIsAuthenticated }) {
     return (

@@ -20,10 +20,28 @@ const RegistrationForm = () => {
         }
     };
 
+    // Making the onSubmit async to wait for handleRegistration
+    const onSubmitHandler = async (e) => {
+        e.preventDefault();
+        await handleRegistration();  // Await the registration process
+    };
+
     return (
-        <form onSubmit={(e) => { e.preventDefault(); handleRegistration().then(r => console.log(r)); }}>
-            <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="Username" required />
-            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" required />
+        <form onSubmit={onSubmitHandler}>
+            <input
+                type="text"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                placeholder="Username"
+                required
+            />
+            <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Password"
+                required
+            />
             <button type="submit">Register</button>
             {message && <p>{message}</p>}
         </form>
