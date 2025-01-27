@@ -1,3 +1,6 @@
+
+![img_2.png](img_2.png)
+
 Update env file for both frontend and backend 
 
 index file
