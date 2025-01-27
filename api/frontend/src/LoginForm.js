@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 
 const LoginForm = ({ onLoginSuccess }) => {
     const [username, setUsername] = useState('');
@@ -9,9 +10,8 @@ const LoginForm = ({ onLoginSuccess }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // 13.42.26.150
         try {
-            const response = await fetch('http://13.42.26.150:5038/api/login', {
+            const response = await fetch('/api/login', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ username, password }),
@@ -61,6 +61,11 @@ const LoginForm = ({ onLoginSuccess }) => {
             {error && <p>{error}</p>}
         </div>
     );
+};
+
+// PropTypes validation for the `onLoginSuccess` prop
+LoginForm.propTypes = {
+    onLoginSuccess: PropTypes.func.isRequired,  // Ensure onLoginSuccess is a function and required
 };
 
 export default LoginForm;

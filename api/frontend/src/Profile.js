@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react'; // Add useEffect import
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Profile = () => {
     const [profile, setProfile] = useState(null);
@@ -11,49 +11,62 @@ const Profile = () => {
     // Fetch profile data
     useEffect(() => {
         const fetchProfile = async () => {
-            const token = localStorage.getItem('token');
-            if (!token) {
-                setMessage('Unauthorized. Please log in.');
-                navigate('/login');
-                return;
+            try {
+                const token = localStorage.getItem('token');
+                if (!token) {
+                    setMessage('Unauthorized. Please log in.');
+                    navigate('/login');
+                    return;
+                }
+
+                const response = await fetch('http://localhost:5038/api/profile', {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                    },
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    setMessage(errorData.error || 'Failed to fetch profile');
+                    console.error('Profile fetch error:', errorData);
+                    return;
+                }
+
+                const result = await response.json();
+                setProfile(result);
+            } catch (error) {
+                console.error('Network or other error:', error);
+                setMessage('Failed to fetch profile');
             }
-
-            const response = await fetch('http://localhost:5038/api/profile', {
-                method: 'GET',
-                headers: {
-                    'Authorization': `Bearer ${token}`,
-                },
-            });
-
-            if (!response.ok) {
-                const errorData = await response.json();
-                setMessage(errorData.error || 'Failed to fetch profile');
-                return;
-            }
-
-            const result = await response.json();
-            setProfile(result);
         };
 
         fetchProfile();
-    }, [navigate]);
+    }, [navigate]); // Dependency array is fine here
 
     // Fetch activity logs
     useEffect(() => {
         const fetchActivityLogs = async () => {
-            const token = localStorage.getItem('token');
-            if (!token) return;
+            try {
+                const token = localStorage.getItem('token');
+                if (!token) return;
 
-            const response = await fetch('http://localhost:5038/api/activity-logs', {
-                method: 'GET',
-                headers: {
-                    'Authorization': `Bearer ${token}`,
-                },
-            });
+                const response = await fetch('http://localhost:5038/api/activity-logs', {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                    },
+                });
 
-            if (response.ok) {
-                const logs = await response.json();
-                setActivityLogs(logs);
+                if (response.ok) {
+                    const logs = await response.json();
+                    setActivityLogs(logs);
+                } else {
+                    const errorData = await response.json();
+                    console.error('Activity Logs fetch error:', errorData);
+                }
+            } catch (error) {
+                console.error('Network or other error while fetching activity logs:', error);
             }
         };
 
@@ -81,7 +94,7 @@ const Profile = () => {
                                 src={profile?.avatar && profile.avatar.trim() !== '' ? profile.avatar : 'https://avatar.iran.liara.run/public/boy?username=Ash'}
                                 alt="Profile"
                                 className="img-fluid rounded-circle"
-                                style={{width: '150px', height: '150px', objectFit: 'cover'}}
+                                style={{ width: '150px', height: '150px', objectFit: 'cover' }}
                             />
                         </div>
                         <div className="col-md-8">
@@ -91,10 +104,7 @@ const Profile = () => {
                                 <p className="card-text">
                                     <small className="text-muted">Joined: {new Date(profile.createdAt).toLocaleDateString()}</small>
                                 </p>
-                                <button
-                                    className="btn btn-danger"
-                                    onClick={handleLogout}
-                                >
+                                <button className="btn btn-danger" onClick={handleLogout}>
                                     Logout
                                 </button>
                             </div>

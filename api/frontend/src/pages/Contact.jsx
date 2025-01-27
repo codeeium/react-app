@@ -1,6 +1,6 @@
 // import React from 'react';
 import homeImage from '../assets/jpg/2.jpg';
-import loc from '../assets/svg/locations-map.svg';
+// import loc from '../assets/svg/locations-map.svg';
 
 const Contact = () => {
     return (
