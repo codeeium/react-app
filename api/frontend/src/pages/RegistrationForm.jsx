@@ -7,7 +7,7 @@ const RegistrationForm = () => {
 
     const handleRegistration = async () => {
         try {
-            const response = await fetch('http://cosmic-kids.zapto.org:5038/api/register', {
+            const response = await fetch('http://localhost:5038/api/register', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ username, password }),

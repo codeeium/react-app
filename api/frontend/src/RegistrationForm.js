@@ -10,7 +10,7 @@ const RegistrationForm = () => {
 
         try {
             const response = await fetch(
-                'http://cosmic-kids.zapto.org:5038/api/register', {
+                'http://localhost:5038/api/register', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(data),

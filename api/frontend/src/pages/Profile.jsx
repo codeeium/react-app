@@ -13,7 +13,7 @@ const Profile = () => {
                 return;
             }
 
-            const response = await fetch('http://cosmic-kids.zapto.org:5038/api/profile', {
+            const response = await fetch('http://localhost:5038/api/profile', {
                 headers: { Authorization: `Bearer ${token}` },
             });
             const data = await response.json();
