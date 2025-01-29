@@ -1,0 +1,15 @@
+{
+    "name": "myvendor/react-app",
+    "autoload": {
+        "psr-4": {
+            "Myvendor\\ReactApp\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "codeeium",
+            "email": "codeeium@gmail.com"
+        }
+    ],
+    "require": {}
+}

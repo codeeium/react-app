@@ -1,0 +1,48 @@
+- name: Install and configure MySQL on Ubuntu EC2
+  hosts: mysql_server
+  become: yes
+  tasks:
+
+    - name: Update apt packages
+      apt:
+        update_cache: yes
+
+    - name: Install MySQL server
+      apt:
+        name: mysql-server
+        state: present
+
+    - name: Start and enable MySQL service
+      systemd:
+        name: mysql
+        state: started
+        enabled: yes
+
+    - name: Create MySQL root user with no password authentication
+      mysql_user:
+        name: root
+        host: localhost
+        password: ""
+        login_unix_socket: /var/run/mysqld/mysqld.sock
+        priv: "*.*:ALL"
+        state: present
+
+    - name: Secure MySQL by disabling remote root login
+      mysql_query:
+        login_user: root
+        login_password: ""
+        query: "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY ''; FLUSH PRIVILEGES;"
+
+    - name: Create a sample test database
+      mysql_db:
+        name: mysql_test
+        state: present
+
+    - name: Create a test table and insert sample data
+      mysql_query:
+        login_user: root
+        login_password: ""
+        query: |
+          USE mysql_test;
+          CREATE TABLE IF NOT EXISTS table1 (id INT, name VARCHAR(45));
+          INSERT INTO table1 VALUES (1, 'Virat'), (2, 'Sachin'), (3, 'Dhoni'), (4, 'ABD');
