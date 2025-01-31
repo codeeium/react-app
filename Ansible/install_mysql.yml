@@ -1,48 +1,98 @@
 - name: Install and configure MySQL on Ubuntu EC2
-  hosts: mysql_server
-  become: yes
+  hosts: mysql_servers
+  become: yes  # Use sudo without password prompts
+  vars:
+    ansible_python_interpreter: /usr/bin/python3  # Ensure Python 3 is used
+    mysql_root_password: "root1234"
+
   tasks:
+    - name: Check if MySQL is already installed
+      command: mysql --version
+      register: mysql_check
+      ignore_errors: yes
 
-    - name: Update apt packages
+    - name: Remove MySQL if already installed
       apt:
-        update_cache: yes
+        name: mysql-server
+        state: absent
+      when: mysql_check.rc == 0
 
-    - name: Install MySQL server
+    - name: Purge any leftover MySQL configurations
+      apt:
+        name: "{{ item }}"
+        state: absent
+      loop:
+        - mysql-client
+        - mysql-common
+        - mysql-server-core-*
+        - mysql-client-core-*
+      when: mysql_check.rc == 0
+
+    - name: Install MySQL Server
       apt:
         name: mysql-server
         state: present
+        update_cache: yes
 
-    - name: Start and enable MySQL service
+    - name: Start and Enable MySQL Service
       systemd:
         name: mysql
         state: started
         enabled: yes
 
-    - name: Create MySQL root user with no password authentication
+    - name: Install MySQL dependencies for Python
+      apt:
+        name:
+          - python3-pymysql  # Ensure PyMySQL is used for Ansible modules
+        state: present
+
+    - name: Secure MySQL Root User with mysql_native_password plugin
       mysql_user:
         name: root
+        password: "{{ mysql_root_password }}"
         host: localhost
-        password: ""
+        state: present
         login_unix_socket: /var/run/mysqld/mysqld.sock
-        priv: "*.*:ALL"
-        state: present
+        plugin: mysql_native_password
 
-    - name: Secure MySQL by disabling remote root login
+    - name: Alter root user authentication method to mysql_native_password
       mysql_query:
         login_user: root
-        login_password: ""
-        query: "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY ''; FLUSH PRIVILEGES;"
+        login_password: "{{ mysql_root_password }}"
+        login_unix_socket: /var/run/mysqld/mysqld.sock
+        query: "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '{{ mysql_root_password }}';"
 
-    - name: Create a sample test database
-      mysql_db:
-        name: mysql_test
-        state: present
-
-    - name: Create a test table and insert sample data
+    - name: Flush privileges after altering root user
       mysql_query:
         login_user: root
-        login_password: ""
-        query: |
-          USE mysql_test;
-          CREATE TABLE IF NOT EXISTS table1 (id INT, name VARCHAR(45));
-          INSERT INTO table1 VALUES (1, 'Virat'), (2, 'Sachin'), (3, 'Dhoni'), (4, 'ABD');
+        login_password: "{{ mysql_root_password }}"
+        login_unix_socket: /var/run/mysqld/mysqld.sock
+        query: "FLUSH PRIVILEGES;"
+
+    - name: Create MySQL Database
+      community.mysql.mysql_db:
+        name: bagisto
+        state: present
+        login_user: root
+        login_password: "{{ mysql_root_password }}"
+        login_unix_socket: /var/run/mysqld/mysqld.sock
+
+    - name: Create MySQL Table
+      community.mysql.mysql_query:
+        login_user: root
+        login_password: "{{ mysql_root_password }}"
+        login_db: bagisto
+        login_unix_socket: /var/run/mysqld/mysqld.sock
+        query: "CREATE TABLE IF NOT EXISTS table1 (id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(45));"
+
+    - name: Insert Data into MySQL Table
+      community.mysql.mysql_query:
+        login_user: root
+        login_password: "{{ mysql_root_password }}"
+        login_db: bagisto
+        login_unix_socket: /var/run/mysqld/mysqld.sock
+        query:
+          - "INSERT INTO table1 (name) VALUES ('Virat');"
+          - "INSERT INTO table1 (name) VALUES ('Sachin');"
+          - "INSERT INTO table1 (name) VALUES ('Dhoni');"
+          - "INSERT INTO table1 (name) VALUES ('ABD');"

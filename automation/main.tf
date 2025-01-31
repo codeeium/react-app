@@ -12,14 +12,14 @@ resource "aws_security_group" "sg" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]  # SSH
+    cidr_blocks = ["0.0.0.0/0"]  # Restrict SSH to your IP
   }
 
   ingress {
     from_port   = 3306
     to_port     = 3306
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]  # MySQL
+    cidr_blocks = ["0.0.0.0/0"]  # Restrict MySQL access
   }
 
   ingress {
@@ -37,57 +37,33 @@ resource "aws_security_group" "sg" {
   }
 }
 
-# EC2 Instance for MySQL and Apache
-resource "aws_instance" "mysql_instance" {
+# EC2 Instance with Apache, MySQL, and SSH Key Setup
+resource "aws_instance" "server" {
   ami           = "ami-091f18e98bc129c4e"  # Ubuntu AMI (update to your region)
   instance_type = "t2.micro"
-  key_name      = "28-Jan-2025-pair-key"  # Replace with your AWS key pair
-
+  key_name      = "31-Jan-2025-key-pair"  # Replace with your AWS key pair
   security_groups = [aws_security_group.sg.name]
 
-  # User data script to install Apache and MySQL
   user_data = <<-EOF
-              #!/bin/bash
-              set -e  # Stop script on error
+            #!/bin/bash
+            set -e  # Exit if any command fails
 
-              # Update the system
-              sudo apt update -y
+            # Update system and install required packages
+            sudo apt update -y && sudo apt install -y apache2 openssh-server
 
-              # Install Apache HTTP Server
-              sudo apt install -y apache2
-              sudo systemctl enable apache2
-              sudo systemctl start apache2
+            # Ensure SSH is running
+            sudo systemctl enable ssh && sudo systemctl start ssh
 
-              # Install MySQL server
-              sudo apt install -y mysql-server
-              sudo systemctl enable mysql
-              sudo systemctl start mysql
-
-              # Secure MySQL root user
-              sudo mysql -e "
-              ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'root1234';
-              FLUSH PRIVILEGES;
-              "
-
-              # Create a sample database and table
-              sudo mysql -e "CREATE DATABASE mysql_test;"
-              sudo mysql -e "USE mysql_test; CREATE TABLE table1 (id INT, name VARCHAR(45));"
-              sudo mysql -e "INSERT INTO table1 VALUES(1, 'Virat'), (2, 'Sachin'), (3, 'Dhoni'), (4, 'ABD');"
-              sudo mysql -e "SELECT * FROM table1;"
-
-              # Allow HTTP, MySQL, and SSH traffic
-              sudo ufw allow 22/tcp
-              sudo ufw allow 80/tcp
-              sudo ufw allow 3306/tcp
-              sudo ufw --force enable
-              EOF
+            # Enable and start Apache
+            sudo systemctl enable apache2 && sudo systemctl start apache2
+            EOF
 
   tags = {
-    Name = "Clean-MySQL-Instance"
+    Name = "bagisto-ec2-instance-ubuntu"
   }
 }
 
 # Output the public IP of the EC2 instance
 output "instance_public_ip" {
-  value = aws_instance.mysql_instance.public_ip
+  value = aws_instance.server.public_ip
 }
